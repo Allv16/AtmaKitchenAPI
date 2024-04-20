@@ -107,7 +107,7 @@ class AuthController extends Controller
         if ($user->save()) {
             $customer->save();
             $alamat->save();
-            // Mail::to($user->email)->send(new VerificationMail($details)); // send email verification
+            Mail::to($user->email)->send(new VerificationMail($details)); // send email verification
             return response()->json([
                 'success' => true,
                 'message' => 'Register successful',
