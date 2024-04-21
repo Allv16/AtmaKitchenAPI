@@ -24,7 +24,7 @@ return new class extends Migration
             $table->dateTime('tanggal_diambil')->nullable(); //untuk transaksi pickup
             $table->integer('poin_digunakan')->nullable();
             $table->integer('poin_diperoleh')->nullable();
-            $table->float('total');
+            $table->decimal('total', 15, 2);
             $table->string('jenis_pengiriman');
             $table->string('status_transaksi');
 

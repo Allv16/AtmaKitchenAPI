@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('bukti_pembayaran')->nullable();
             $table->dateTime('tanggal_pembayaran');
             $table->dateTime('tanggal_pembayaran_valid')->nullable();
-            $table->float('total_pembayaran');
-            $table->float('tip');
+            $table->decimal('total_pembayaran', 15, 2);
+            $table->decimal('tip', 15, 2);
 
             $table->foreignId('id_customer')->references('id_customer')->on('customers');
             $table->timestamps();
