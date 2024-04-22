@@ -9,10 +9,17 @@ use App\Mail\MailSend;
 use App\Mail\VerificationMail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\ResetPasswordMail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 
+use App\Models\PasswordResetToken;
 use App\Models\User;
 use App\Models\Customer;
 use App\Models\AlamatCustomer;
+use App\Mail\ForgetPassword;
+use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -133,5 +140,81 @@ class AuthController extends Controller
             'message' => 'Not authenticated',
             'data' => null
         ], 401);
+    }
+
+    public function sendVerification(Request $request){
+        $validators = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if ($validators->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validators->errors(),
+                'data' => null
+            ], 400);
+        }
+
+        $user =  User::where('email', $request->email)->first();
+
+        if ($user) {
+            $credentials = ['email' => $user->email];
+            $response = Password::sendResetLink($credentials);
+
+            switch ($response) {
+                case Password::RESET_LINK_SENT:
+                    return response()->json([
+                        'status'        => 'success',
+                        'message' => 'Password reset link send into mail.',
+                        'data' => ''
+                    ], 201);
+                case Password::INVALID_USER:
+                    return response()->json([
+                        'status'        => 'failed',
+                        'message' =>   'Unable to send password reset link.'
+                    ], 401);
+            }
+        }
+        return response()->json([
+            'status'        => 'failed',
+            'message' =>   'user detail not found!'
+        ], 401);
+    }
+
+    public function validateForgotPassword(Request $request){
+        $validators = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
+            'token' => 'required',
+        ]);
+
+        if ($validators->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validators->errors(),
+                'data' => null
+            ], 400);
+        }
+        $token = DB::table('password_reset_tokens')->where('email', $request->email)->first();
+
+        if (Hash::check($request->token, $token->token)) {
+            $user = User::where('email', $token->email)->first();
+            $user->update([
+                'password' => bcrypt($request->password)
+            ]);
+            DB::table('password_reset_tokens')->where('email', $request->email)->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Password Updated',
+                'data' => null
+            ]);
+        }else {
+            
+            return response()->json([
+                'success' => false,
+                'message' => 'Token invalid',
+                'data' => null
+            ]);
+        }
     }
 }
