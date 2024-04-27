@@ -18,4 +18,9 @@ class AlamatCustomer extends Model
         'alamat',
         'id_customer'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

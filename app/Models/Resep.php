@@ -18,6 +18,12 @@ class Resep extends Model
         'id_bahan_baku',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     public function produk()
     {
         return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
