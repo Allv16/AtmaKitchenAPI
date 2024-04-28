@@ -237,6 +237,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 75000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null'
             ],
             [
                 'id_penitip' => 2,
@@ -244,6 +246,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 250000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Sncak',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
             ],
             [
                 'id_penitip' => 3,
@@ -251,6 +255,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 300000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
             ],
             [
                 'id_penitip' => 4,
@@ -258,6 +264,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 120000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
             ],
             [
                 'id_penitip' => 5,
@@ -265,6 +273,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 45000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
             ],
         ]);
 
@@ -275,6 +285,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 850_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -282,6 +294,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 450_000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -289,6 +303,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 550_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -296,6 +312,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 300_000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -303,6 +321,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 250_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -310,6 +330,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 150_000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -317,6 +339,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 450_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -324,6 +348,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 250_000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -331,6 +357,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 350_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -338,6 +366,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 350_000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -345,6 +375,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 180_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Roti',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -352,6 +384,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 120_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Roti',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -359,6 +393,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 150_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Roti',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -366,6 +402,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 75_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Minuman',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -373,6 +411,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 100_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Minuman',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
         ]);
@@ -384,6 +424,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 650_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Hampers',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -392,6 +434,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 500_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Hampers',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ],
             [
@@ -400,6 +444,8 @@ class DatabaseSeeder extends Seeder
                 'harga' => 350_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Hampers',
+                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'foto' => 'http://null',
                 'id_penitip' => null,
             ]
         ]);

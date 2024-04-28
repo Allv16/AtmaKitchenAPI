@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('produk', function (Blueprint $table) {
             $table->id('id_produk');
             $table->string('nama_produk');
+            $table->string('deskripsi');
             $table->float('harga');
             $table->integer('limit_produksi');
             $table->string('jenis_produk');
+            $table->string('foto');
 
             $table->foreignId('id_penitip')->nullable()->references('id_penitip')->on('penitip');
             $table->timestamps();

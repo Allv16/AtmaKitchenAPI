@@ -18,7 +18,9 @@ class Produk extends Model
         'harga',
         'limit_produksi',
         'jenis_produk',
-        'id_penitip'
+        'id_penitip',
+        'deskripsi',
+        'foto'
     ];
 
     public function penitip()
