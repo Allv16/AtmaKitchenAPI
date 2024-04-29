@@ -16,8 +16,7 @@ class ProdukController extends Controller
     public function getAllProducts()
     {
         try {
-            $products = Produk::all()
-                ->sortBy('nama_produk');
+            $products = Produk::orderBy('nama_produk')->get();
             return response()->json([
                 'success' => true,
                 'message' => 'Success Retrive All Products',

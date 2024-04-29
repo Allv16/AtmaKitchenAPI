@@ -15,7 +15,7 @@ class BahanBakuController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Ingredients Successfully Retrieved',
-                'data' => ['data' => $ingredients]
+                'data' => ['ingredients' => $ingredients]
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

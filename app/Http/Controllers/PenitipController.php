@@ -15,7 +15,7 @@ class PenitipController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'custodian Successfully Retrieved',
-                'data' => ['data' => $custodian]
+                'data' => ['penitip' => $custodian]
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

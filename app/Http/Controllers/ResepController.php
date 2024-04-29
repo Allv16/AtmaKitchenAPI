@@ -15,7 +15,7 @@ class ResepController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Recipes Successfully Retrieved',
-                'data' => ['data' => $recipes]
+                'data' => ['recipe' => $recipes]
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
