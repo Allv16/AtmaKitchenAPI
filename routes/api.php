@@ -35,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/products', [ProdukController::class, 'getAllProducts']);
     Route::get('/products/getTopProduct', [ProdukController::class, 'getTopProduct']);
     Route::get('/products/random', [ProdukController::class, 'getRandomProducts']);
+    Route::get('/products/own-products', [ProdukController::class, 'getOwnProducts']);
     Route::get('/products/category/cakes', [ProdukController::class, 'getCakesProducts']);
     Route::get('/products/category/roti', [ProdukController::class, 'getRotiProducts']);
     Route::get('/products/category/minuman', [ProdukController::class, 'getMinumanProducts']);
@@ -47,6 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //resep
     Route::get('/recipes', [ResepController::class, 'getAllRecipes']);
+    Route::get('/recipes/{idProduct}', [ResepController::class, 'getRecipesById']);
     Route::post('/recipes/add', [ResepController::class, 'addRecipe']);
     Route::put('/recipes/edit/{id}', [ResepController::class, 'editRecipe']);
     Route::delete('/recipes/delete/{id}', [ResepController::class, 'deleteRecipe']);

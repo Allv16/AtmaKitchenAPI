@@ -27,6 +27,33 @@ class ResepController extends Controller
         }
     }
 
+    public function getRecipesById($idProduct)
+    {
+        try {
+            $recipe = Resep::where('id_produk', $idProduct)->get();
+            if ($recipe->count() == 0) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Recipe Not Found',
+                    'data' => null
+                ], 404);
+            } else {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Recipe Successfully Retrieved',
+                    'data' => ['recipe' => $recipe->load(['produk', 'bahanBaku'])]
+                ], 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve recipe',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
     public function addRecipe(Request $request)
     {
         $validator = Validator::make($request->all(), [

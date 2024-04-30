@@ -200,6 +200,27 @@ class ProdukController extends Controller
         }
     }
 
+    public function getOwnProducts()
+    {
+        try {
+            $products = Produk::whereNotIn('jenis_produk', ['Hampers', 'Snack'])->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'Success Retrive Own Products',
+                'data' => [
+                    'products' => $products
+                ]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve own products',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
     //add
     public function addProduct(Request $request)
     {
@@ -207,6 +228,8 @@ class ProdukController extends Controller
             'nama_produk' => 'required',
             'harga' => 'required',
             'limit_produksi' => 'required',
+            'deskripsi' => 'required',
+            'foto' => 'required',
             'jenis_produk' => ['required', Rule::in(['Cake', 'Roti', 'Minuman', 'Hampers', 'Snack'])],
         ]);
         if ($validators->fails()) {
