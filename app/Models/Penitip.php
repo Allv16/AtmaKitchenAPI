@@ -18,6 +18,12 @@ class Penitip extends Model
         'telp_penitip',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     public function produk()
     {
         return $this->hasMany(Produk::class, 'id_penitip', 'id_penitip');

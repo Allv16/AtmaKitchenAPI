@@ -330,4 +330,22 @@ class ProdukController extends Controller
             ], 500);
         }
     }
+
+    public function addImageProduct(Request $request, $idProduct)
+    {
+
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = env('AZURE_STORAGE_URL') . env('AZURE_STORAGE_CONTAINER') . '/' . $request->file('image')->storeAs('products', $name, 'azure');
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Image added',
+            'data' => ['url' => $destinationPath]
+        ], 200);
+    }
 }

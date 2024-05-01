@@ -19,6 +19,12 @@ class BahanBaku extends Model
         'min_stok'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     public function resep()
     {
         return $this->hasMany(Resep::class, 'id_bahan_baku', 'id_bahan_baku');

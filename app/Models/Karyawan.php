@@ -19,4 +19,10 @@ class Karyawan extends Model
         'bonus_gaji_karyawan',
         'gaji_karyawan',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 }

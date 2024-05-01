@@ -23,6 +23,12 @@ class Produk extends Model
         'foto'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     public function penitip()
     {
         return $this->belongsTo(Penitip::class, 'id_penitip', 'id_penitip');
