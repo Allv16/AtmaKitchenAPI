@@ -229,9 +229,10 @@ class ProdukController extends Controller
             'harga' => 'required',
             'limit_produksi' => 'required',
             'deskripsi' => 'required',
-            'foto' => 'required',
             'jenis_produk' => ['required', Rule::in(['Cake', 'Roti', 'Minuman', 'Hampers', 'Snack'])],
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
+
         if ($validators->fails()) {
             return response()->json([
                 'success' => false,
@@ -239,13 +240,22 @@ class ProdukController extends Controller
                 'data' => null
             ], 400);
         }
+
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $name = time() . '.' . $foto->getClientOriginalExtension();
+            $destinationPath = env('AZURE_STORAGE_URL') . env('AZURE_STORAGE_CONTAINER') . '/' . $request->file('foto')->storeAs('products', $name, 'azure');
+        }
+
         try {
             $product = Produk::create([
                 'nama_produk' => $request->nama_produk,
                 'harga' => $request->harga,
                 'limit_produksi' => $request->limit_produksi,
                 'jenis_produk' => $request->jenis_produk,
-                'id_penitip' => $request->id_penitip
+                'id_penitip' => $request->id_penitip,
+                'deskripsi' => $request->deskripsi,
+                'foto' => $destinationPath
             ]);
             return response()->json([
                 'success' => true,

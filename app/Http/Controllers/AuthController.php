@@ -18,6 +18,7 @@ use App\Models\User;
 use App\Models\Customer;
 use App\Models\AlamatCustomer;
 use App\Mail\ForgetPassword;
+use Exception;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\DB;
 
@@ -142,7 +143,8 @@ class AuthController extends Controller
         ], 401);
     }
 
-    public function sendVerification(Request $request){
+    public function sendVerification(Request $request)
+    {
         $validators = Validator::make($request->all(), [
             'email' => 'required|email',
         ]);
@@ -181,7 +183,8 @@ class AuthController extends Controller
         ], 401);
     }
 
-    public function validateForgotPassword(Request $request){
+    public function validateForgotPassword(Request $request)
+    {
         $validators = Validator::make($request->all(), [
             'email' => 'required',
             'password' => 'required',
@@ -208,13 +211,55 @@ class AuthController extends Controller
                 'message' => 'Password Updated',
                 'data' => null
             ]);
-        }else {
-            
+        } else {
+
             return response()->json([
                 'success' => false,
                 'message' => 'Token invalid',
                 'data' => null
             ]);
+        }
+    }
+
+    public function editProfilePicture(Request $request)
+    {
+        $validators = Validator::make($request->all(), [
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:4096',
+        ]);
+
+        if ($validators->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validators->errors(),
+                'data' => null
+            ], 400);
+        }
+
+        try {
+            $user = Auth::user();
+
+            if ($request->hasFile('foto')) {
+                $foto = $request->file('foto');
+                $name = $user->email . '.' . $foto->getClientOriginalExtension();
+                $destinationPath = env('AZURE_STORAGE_URL') . env('AZURE_STORAGE_CONTAINER') . '/' . $request->file('foto')->storeAs('profiles', $name, 'azure');
+            }
+
+            $editedUser = User::find($user->id_user);
+            $editedUser = $editedUser->update([
+                'url_foto' => $destinationPath
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Profile picture updated',
+                'data' => $user
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'ERROR: ' . $e->getMessage(),
+                'data' => null
+            ], 400);
         }
     }
 }

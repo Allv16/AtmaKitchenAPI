@@ -28,6 +28,10 @@ Route::get('/roles', [RoleController::class, 'getAllRoles']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    //Auth
+    Route::post('/auth/edit/profile-picture', [AuthController::class, 'editProfilePicture']);
+
     //Role
     Route::post('/roles/add', [RoleController::class, 'addRole']);
     Route::put('/roles/edit/{idRole}', [RoleController::class, 'editRole']);
