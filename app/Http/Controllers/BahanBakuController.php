@@ -27,6 +27,32 @@ class BahanBakuController extends Controller
         }
     }
 
+    public function getIngredientsById($id)
+    {
+        try {
+            $ingredient = BahanBaku::find($id);
+            if ($ingredient == null) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Ingredient Not Found',
+                    'data' => null
+                ], 404);
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Ingredient Successfully Retrieved',
+                'data' => ['ingredient' => $ingredient]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve ingredient',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
     public function addIngredient(Request $request)
     {
         $validator = Validator::make($request->all(), [

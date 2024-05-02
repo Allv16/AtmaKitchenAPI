@@ -27,6 +27,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+
             /** @var \App\Models\User $user **/
             $user = Auth::user();
             $token = $user->createToken('token-name')->plainTextToken;

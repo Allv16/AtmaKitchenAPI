@@ -61,6 +61,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //bahan baku
     Route::get('/ingredients', [BahanBakuController::class, 'getAllIngredients']);
+    Route::get('/ingredients/{id}', [BahanBakuController::class, 'getIngredientsById']);
     Route::post('/ingredients/add', [BahanBakuController::class, 'addIngredient']);
     Route::put('/ingredients/edit/{id}', [BahanBakuController::class, 'editIngredient']);
     Route::delete('/ingredients/delete/{id}', [BahanBakuController::class, 'deleteIngredient']);
