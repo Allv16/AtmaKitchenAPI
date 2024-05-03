@@ -17,9 +17,10 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/email/resend/{email}', [VerificationController::class, 'resend']);
 Route::get('/not-authenticated', [AuthController::class, 'notAuthenticated'])->name('not-authenticated');
-Route::post('/reset-password', [AuthController::class, 'sendPasswordVerification']);
+Route::post('/reset-password', [AuthController::class, 'sendVerification']);
 Route::get('/reset-password/{resetToken}', [AuthController::class, 'resetPassword']);
 Route::post('/validate-forgot-password', [AuthController::class, 'validateForgotPassword']);
+Route::get('/auth/usermame/is-available/{username}', [AuthController::class, 'isUsernameAvailable']);
 
 Route::post('/product/upload/{idProduct}', [ProdukController::class, 'addImageProduct']);
 

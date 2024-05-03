@@ -160,28 +160,31 @@ class AuthController extends Controller
 
         $user =  User::where('email', $request->email)->first();
 
-        if ($user) {
+        if ($user && $user->tanggal_diverifikasi != null) {
             $credentials = ['email' => $user->email];
             $response = Password::sendResetLink($credentials);
 
             switch ($response) {
                 case Password::RESET_LINK_SENT:
                     return response()->json([
-                        'status'        => 'success',
+                        'success'  => true,
                         'message' => 'Password reset link send into mail.',
-                        'data' => ''
+                        'data' => null
                     ], 201);
                 case Password::INVALID_USER:
                     return response()->json([
-                        'status'        => 'failed',
-                        'message' =>   'Unable to send password reset link.'
+                        'success' => false,
+                        'message' => 'Unable to send password reset link.',
+                        'data' => null
                     ], 401);
             }
+        } else {
+            return response()->json([
+                'success'        => false,
+                'message' =>   'Email not found or not verified!',
+                'data' => null
+            ], 401);
         }
-        return response()->json([
-            'status'        => 'failed',
-            'message' =>   'user detail not found!'
-        ], 401);
     }
 
     public function validateForgotPassword(Request $request)
@@ -261,6 +264,24 @@ class AuthController extends Controller
                 'message' => 'ERROR: ' . $e->getMessage(),
                 'data' => null
             ], 400);
+        }
+    }
+
+    public function isUsernameAvailable($username)
+    {
+        $user = User::where('username', $username)->first();
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Username is available',
+                'data' => null
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Username is taken',
+                'data' => null
+            ]);
         }
     }
 }

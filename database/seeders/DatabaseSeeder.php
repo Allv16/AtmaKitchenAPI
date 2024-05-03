@@ -245,7 +245,7 @@ class DatabaseSeeder extends Seeder
                 'nama_produk' => 'Kopi Luwak Bubuk',
                 'harga' => 250000,
                 'limit_produksi' => 20,
-                'jenis_produk' => 'Sncak',
+                'jenis_produk' => 'Snack',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
                 'foto' => 'http://null',
             ],
