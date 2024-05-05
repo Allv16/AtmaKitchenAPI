@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/edit/profile-picture', [AuthController::class, 'editProfilePicture']);
     Route::get('/auth/profile', [AuthController::class, 'getProfile']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
+    Route::get('/auth/user', [AuthController::class, 'getUser']);
 
     //Role
     Route::post('/roles/add', [RoleController::class, 'addRole']);
