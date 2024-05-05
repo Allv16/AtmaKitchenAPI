@@ -76,12 +76,14 @@ Route::middleware('auth:sanctum')->group(function () {
     //karyawan
     Route::get('/karyawan', [KaryawanController::class, 'getAllKaryawan']);
     Route::post('/karyawan/add', [KaryawanController::class, 'addKaryawan']);
+    Route::get('/karyawan/{idKaryawan}', [KaryawanController::class, 'getKaryawanById']);
     Route::put('/karyawan/edit/{idkaryawan}', [KaryawanController::class, 'editKaryawan']);
     Route::delete('/karyawan/delete/{idkaryawan}', [KaryawanController::class, 'deleteKaryawan']);
 
     //penitip
     Route::get('/penitip', [PenitipController::class, 'getAllPenitip']);
     Route::post('/penitip/add', [PenitipController::class, 'addPenitip']);
+    Route::get('/penitip/{idPenitip}', [PenitipController::class, 'getPenitipById']);
     Route::put('/penitip/edit/{idPenitip}', [PenitipController::class, 'editPenitip']);
     Route::delete('/penitip/delete/{idPenitip}', [PenitipController::class, 'deletePenitip']);
 });

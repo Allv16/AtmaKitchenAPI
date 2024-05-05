@@ -61,6 +61,32 @@ class PenitipController extends Controller
         }
     }
 
+    public function getPenitipById($idPenitip)
+    {
+        try {
+            $custodian = Penitip::find($idPenitip);
+            if ($custodian == null) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Custodian Not Found',
+                    'data' => null
+                ], 404);
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Custodian Successfully Retrieved',
+                'data' => ['custodian' => $custodian]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve custodian',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
     public function editPenitip(Request $request, $idPenitip)
     {
         $validator = Validator::make($request->all(), [
