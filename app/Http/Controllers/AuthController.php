@@ -49,9 +49,11 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        $request->user()->currentAccessToken()->delete();
+        /** @var \App\Models\User $user **/
+        $user = Auth::user();
+        $user->currentAccessToken()->delete();
         return response()->json([
             'success' => true,
             'message' => 'Logout successful',
@@ -225,6 +227,24 @@ class AuthController extends Controller
         }
     }
 
+    public function isEmailVerified($username)
+    {
+        $user = User::where('username', $username)->first();
+        if ($user->tanggal_diverifikasi != null) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Email is verified',
+                'data' => null
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Email is not verified',
+                'data' => null
+            ]);
+        }
+    }
+
     public function editProfilePicture(Request $request)
     {
         $validators = Validator::make($request->all(), [
@@ -270,7 +290,7 @@ class AuthController extends Controller
     public function isUsernameAvailable($username)
     {
         $user = User::where('username', $username)->first();
-        if ($user) {
+        if (!$user) {
             return response()->json([
                 'success' => true,
                 'message' => 'Username is available',
@@ -283,5 +303,36 @@ class AuthController extends Controller
                 'data' => null
             ]);
         }
+    }
+
+    public function isEmailAvailable($email)
+    {
+        $user = User::where('email', $email)->first();
+        if (!$user) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Email is available',
+                'data' => null
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Email is taken',
+                'data' => null
+            ]);
+        }
+    }
+
+    public function getProfile()
+    {
+        $userID = Auth::id();
+        $customer = Customer::where('id_user', $userID)->first();
+        return response()->json([
+            'success' => true,
+            'message' => 'Profile fetched',
+            'data' => [
+                'customer' => $customer->load('user')
+            ]
+        ]);
     }
 }
