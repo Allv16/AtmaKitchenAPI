@@ -212,11 +212,7 @@ class AuthController extends Controller
                 'password' => bcrypt($request->password)
             ]);
             DB::table('password_reset_tokens')->where('email', $request->email)->delete();
-            return response()->json([
-                'success' => true,
-                'message' => 'Password Updated',
-                'data' => null
-            ]);
+            return view('verification', ['message' => 'Password changed successfully', 'message2' => 'Your password has been successfully updated. Now you can return to the login page to access our website', "class1" => "success", "class2" => "success1"]);
         } else {
 
             return response()->json([

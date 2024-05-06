@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,14 @@ Route::get('/verification', function () {
     return view('verification');
 });
 
-Route::get('/reset-password', function () {
-    return view('resetPassword');
-});
+// Route::get('/reset-password', function () {
+//     return view('resetPassword');
+// });
 
 Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\VerificationController::class, 'verify']);
+
+Route::get('/reset-password/{token}', function ($token) {
+    return view('resetPassword', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password', [App\Http\Controllers\AuthController::class, 'validateForgotPassword'])->name('password.update');

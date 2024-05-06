@@ -17,11 +17,10 @@
                 <h1 class="mb-1 text-xl font-serif font-bold leading-tight tracking-tight text-gray-900 md:text-3xl text-center">
                     Change Password
                 </h1>
-                <form class="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="#">
-                    <div>
-                        <label for="email" class="block mb-2 font-serif text-sm font-medium text-gray-900">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Input new email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="">
-                    </div>
+                <form class="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="{{ route('password.update') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="token" value="{{ request()->token }}">
+                    <input type="hidden" name="email" value="{{ request()->email }}">
                     <div>
                         <label for="password" class="block mb-2 font-serif text-sm font-medium text-gray-900">New Password</label>
                         <input type="password" name="password" id="password" placeholder="Input new password" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="">
