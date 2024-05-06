@@ -15,36 +15,21 @@ class VerificationController extends Controller
         $user = User::find($id);
         if ($user) {
             if ($user->tanggal_diverifikasi != null) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Email already verified',
-                    'data' => null
-                ]);
+                return view('verification', ['message' => 'Email already verified', 'message2' => 'Your account has been activated, so no further verification is required.', "class1" => "warning", "class2" => "warning1"]);
             } else {
                 if ($user->verif_key == $hash) {
                     $user->tanggal_diverifikasi = now();
                     $user->save();
-                    return response()->json([
-                        'success' => true,
-                        'message' => 'Email verified successfully',
-                        'data' => null
-                    ]);
+                    return view('verification', ['message' => 'Email verified successfully', 'message2' => 'Your account is now fully activated. Explore our website for more features and updates.', "class1" => "success", "class2" => "success1"]);
                 } else {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'Invalid verification link',
-                        'data' => null
-                    ]);
+                    return view('verification', ['message' => 'Invalid verification link']);
                 }
             }
         } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Invalid verification link',
-                'data' => null
-            ]);
+            return view('verification', ['message' => 'Invalid verification link']);
         }
     }
+    
 
     public function resend($email)
     {

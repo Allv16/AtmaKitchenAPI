@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('emailVerification');
+});
+
+Route::get('/verification', function () {
+    return view('verification');
 });
 
 Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\VerificationController::class, 'verify']);
