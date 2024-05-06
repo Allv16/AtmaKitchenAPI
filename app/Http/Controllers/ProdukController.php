@@ -279,7 +279,9 @@ class ProdukController extends Controller
             'nama_produk' => 'required',
             'harga' => 'required',
             'limit_produksi' => 'required',
+            'deskripsi' => 'required',
             'jenis_produk' => ['required', Rule::in(['Cake', 'Roti', 'Minuman', 'Hampers', 'Snack'])],
+            'foto' => 'required',
         ]);
         if ($validators->fails()) {
             return response()->json([
@@ -341,9 +343,8 @@ class ProdukController extends Controller
         }
     }
 
-    public function addImageProduct(Request $request, $idProduct)
+    public function addImageProduct(Request $request)
     {
-
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
