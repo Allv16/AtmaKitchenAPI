@@ -24,7 +24,7 @@ Route::get('/auth/usermame/is-available/{username}', [AuthController::class, 'is
 Route::get('/auth/email/is-available/{email}', [AuthController::class, 'isEmailAvailable']);
 Route::get('/auth/email/is-verified/{username}', [AuthController::class, 'isEmailVerified']);
 
-Route::post('/product/upload/{idProduct}', [ProdukController::class, 'addImageProduct']);
+
 
 //Role
 Route::get('/roles', [RoleController::class, 'getAllRoles']);
@@ -54,6 +54,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/products/category/hampers', [ProdukController::class, 'getHampersProducts']);
     Route::get('/products/category/snack', [ProdukController::class, 'getSnackProducts']);
     Route::get('/products/{id}', [ProdukController::class, 'getProductById']);
+    Route::post('/product/upload-photo', [ProdukController::class, 'addImageProduct']);
 
     Route::post('/products/add', [ProdukController::class, 'addProduct']);
     Route::put('/products/edit/{id}', [ProdukController::class, 'editProduct']);
@@ -76,6 +77,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //hampers
     Route::get('/hampers', [HampersController::class, 'getAllHampers']);
+    Route::get('/hampers/{idHampers}', [HampersController::class, 'getHampersById']);
     Route::post('/hampers/add', [HampersController::class, 'addHampers']);
     Route::put('/hampers/edit/{idHampers}', [HampersController::class, 'editHampers']);
     Route::delete('/hampers/delete/{idHampers}', [HampersController::class, 'deleteHampers']);

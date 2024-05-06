@@ -58,7 +58,9 @@ class HampersController extends Controller
             'harga' => 'required|numeric',
             'limit_produksi' => 'required|numeric',
             'items' => 'required|array',
-            'id_kemasan' => 'required'
+            'id_kemasan' => 'required',
+            'deskripsi' => 'required',
+            'foto' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -75,6 +77,8 @@ class HampersController extends Controller
                 'harga' => $request->harga,
                 'limit_produksi' => $request->limit_produksi,
                 'jenis_produk' => 'Hampers',
+                'deskripsi' => $request->deskripsi,
+                'foto' => $request->foto
             ]);
             $hampers->save();
             foreach ($request->items as $item) {
@@ -108,7 +112,9 @@ class HampersController extends Controller
             'harga' => 'required|numeric',
             'limit_produksi' => 'required|numeric',
             'items' => 'required|array',
-            'id_kemasan' => 'required'
+            'id_kemasan' => 'required',
+            'deskripsi' => 'required',
+            'foto' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -132,6 +138,9 @@ class HampersController extends Controller
             $hampers->harga = $request->harga;
             $hampers->limit_produksi = $request->limit_produksi;
             $hampers->jenis_produk = 'Hampers';
+            $hampers->deskripsi = $request->deskripsi;
+            $hampers->foto = $request->foto;
+
             $hampers->save();
 
             DetailHampers::where('id_hampers', $idHampers)->delete();
@@ -185,6 +194,32 @@ class HampersController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to delete hampers',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+    public function getHampersById($idHampers)
+    {
+        try {
+            $hampers = Produk::with('detailHampers.items')->find($idHampers);
+            if ($hampers == null) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Hampers Not Found',
+                    'data' => null
+                ], 404);
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Hampers Successfully Retrieved',
+                'data' => ['hampers' => $hampers]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrive hampers',
                 'error' => $e->getMessage(),
                 'data' => null
             ], 500);
