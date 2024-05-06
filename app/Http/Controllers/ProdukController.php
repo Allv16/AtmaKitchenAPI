@@ -203,7 +203,7 @@ class ProdukController extends Controller
     public function getOwnProducts()
     {
         try {
-            $products = Produk::whereNotIn('jenis_produk', ['Hampers', 'Snack'])->get();
+            $products = Produk::whereNotIn('jenis_produk', ['Hampers', 'Snack'])->where('nama_produk', 'not like', '%1/2%')->get();
             return response()->json([
                 'success' => true,
                 'message' => 'Success Retrive Own Products',
@@ -356,6 +356,24 @@ class ProdukController extends Controller
             'success' => true,
             'message' => 'Image added',
             'data' => ['url' => $destinationPath]
+        ], 200);
+    }
+
+    public function getProductById($id)
+    {
+
+        $product = Produk::find($id);
+        if (!$product) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Product not found',
+                'data' => null
+            ], 404);
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Product found',
+            'data' => ['product' => $product]
         ], 200);
     }
 }

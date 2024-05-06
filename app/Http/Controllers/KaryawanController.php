@@ -154,4 +154,30 @@ class KaryawanController extends Controller
             ], 500);
         }
     }
+
+    public function getKaryawanById($idKaryawan)
+    {
+        try {
+            $karyawan = Karyawan::find($idKaryawan);
+            if ($karyawan == null) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Karyawan Not Found',
+                    'data' => null
+                ], 404);
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Karyawan Successfully Retrieved',
+                'data' => ['karyawan' => $karyawan]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrive karyawan',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
 }

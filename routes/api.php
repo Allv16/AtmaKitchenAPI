@@ -53,6 +53,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/products/category/minuman', [ProdukController::class, 'getMinumanProducts']);
     Route::get('/products/category/hampers', [ProdukController::class, 'getHampersProducts']);
     Route::get('/products/category/snack', [ProdukController::class, 'getSnackProducts']);
+    Route::get('/products/{id}', [ProdukController::class, 'getProductById']);
 
     Route::post('/products/add', [ProdukController::class, 'addProduct']);
     Route::put('/products/edit/{id}', [ProdukController::class, 'editProduct']);
@@ -62,7 +63,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/recipes', [ResepController::class, 'getAllRecipes']);
     Route::get('/recipes/{idProduct}', [ResepController::class, 'getRecipesById']);
     Route::post('/recipes/add', [ResepController::class, 'addRecipe']);
-    Route::put('/recipes/edit/{id}', [ResepController::class, 'editRecipe']);
+    // Route::put('/recipes/edit/{id}', [ResepController::class, 'editRecipe']);
+    Route::put('/recipes/edit/{id}', [ResepController::class, 'updateRecipeByIdProduct']);
     Route::delete('/recipes/delete/{id}', [ResepController::class, 'deleteRecipe']);
 
     //bahan baku
@@ -80,6 +82,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //karyawan
     Route::get('/karyawan', [KaryawanController::class, 'getAllKaryawan']);
+    Route::get('/karyawan/{idKaryawan}', [KaryawanController::class, 'getKaryawanById']);
     Route::post('/karyawan/add', [KaryawanController::class, 'addKaryawan']);
     Route::get('/karyawan/{idKaryawan}', [KaryawanController::class, 'getKaryawanById']);
     Route::put('/karyawan/edit/{idkaryawan}', [KaryawanController::class, 'editKaryawan']);
@@ -87,6 +90,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //penitip
     Route::get('/penitip', [PenitipController::class, 'getAllPenitip']);
+    Route::get('/penitip/{idPenitip}', [PenitipController::class, 'getPenitipById']);
     Route::post('/penitip/add', [PenitipController::class, 'addPenitip']);
     Route::get('/penitip/{idPenitip}', [PenitipController::class, 'getPenitipById']);
     Route::put('/penitip/edit/{idPenitip}', [PenitipController::class, 'editPenitip']);
