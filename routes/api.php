@@ -17,9 +17,12 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/email/resend/{email}', [VerificationController::class, 'resend']);
 Route::get('/not-authenticated', [AuthController::class, 'notAuthenticated'])->name('not-authenticated');
-Route::post('/reset-password', [AuthController::class, 'sendPasswordVerification']);
+Route::post('/reset-password', [AuthController::class, 'sendVerification']);
 Route::get('/reset-password/{resetToken}', [AuthController::class, 'resetPassword']);
 Route::post('/validate-forgot-password', [AuthController::class, 'validateForgotPassword']);
+Route::get('/auth/usermame/is-available/{username}', [AuthController::class, 'isUsernameAvailable']);
+Route::get('/auth/email/is-available/{email}', [AuthController::class, 'isEmailAvailable']);
+Route::get('/auth/email/is-verified/{username}', [AuthController::class, 'isEmailVerified']);
 
 Route::post('/product/upload/{idProduct}', [ProdukController::class, 'addImageProduct']);
 
@@ -31,6 +34,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Auth
     Route::post('/auth/edit/profile-picture', [AuthController::class, 'editProfilePicture']);
+    Route::get('/auth/profile', [AuthController::class, 'getProfile']);
+    Route::post('/auth/logout', [AuthController::class, 'logout']);
+    Route::get('/auth/user', [AuthController::class, 'getUser']);
 
     //Role
     Route::post('/roles/add', [RoleController::class, 'addRole']);

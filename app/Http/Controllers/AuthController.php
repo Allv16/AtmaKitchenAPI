@@ -49,9 +49,11 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        $request->user()->currentAccessToken()->delete();
+        /** @var \App\Models\User $user **/
+        $user = Auth::user();
+        $user->currentAccessToken()->delete();
         return response()->json([
             'success' => true,
             'message' => 'Logout successful',
@@ -160,28 +162,31 @@ class AuthController extends Controller
 
         $user =  User::where('email', $request->email)->first();
 
-        if ($user) {
+        if ($user && $user->tanggal_diverifikasi != null) {
             $credentials = ['email' => $user->email];
             $response = Password::sendResetLink($credentials);
 
             switch ($response) {
                 case Password::RESET_LINK_SENT:
                     return response()->json([
-                        'status'        => 'success',
+                        'success'  => true,
                         'message' => 'Password reset link send into mail.',
-                        'data' => ''
+                        'data' => null
                     ], 201);
                 case Password::INVALID_USER:
                     return response()->json([
-                        'status'        => 'failed',
-                        'message' =>   'Unable to send password reset link.'
+                        'success' => false,
+                        'message' => 'Unable to send password reset link.',
+                        'data' => null
                     ], 401);
             }
+        } else {
+            return response()->json([
+                'success'        => false,
+                'message' =>   'Email not found or not verified!',
+                'data' => null
+            ], 401);
         }
-        return response()->json([
-            'status'        => 'failed',
-            'message' =>   'user detail not found!'
-        ], 401);
     }
 
     public function validateForgotPassword(Request $request)
@@ -217,6 +222,24 @@ class AuthController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Token invalid',
+                'data' => null
+            ]);
+        }
+    }
+
+    public function isEmailVerified($username)
+    {
+        $user = User::where('username', $username)->first();
+        if ($user->tanggal_diverifikasi != null) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Email is verified',
+                'data' => null
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Email is not verified',
                 'data' => null
             ]);
         }
@@ -262,5 +285,66 @@ class AuthController extends Controller
                 'data' => null
             ], 400);
         }
+    }
+
+    public function isUsernameAvailable($username)
+    {
+        $user = User::where('username', $username)->first();
+        if (!$user) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Username is available',
+                'data' => null
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Username is taken',
+                'data' => null
+            ]);
+        }
+    }
+
+    public function isEmailAvailable($email)
+    {
+        $user = User::where('email', $email)->first();
+        if (!$user) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Email is available',
+                'data' => null
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Email is taken',
+                'data' => null
+            ]);
+        }
+    }
+
+    public function getProfile()
+    {
+        $userID = Auth::id();
+        $customer = Customer::where('id_user', $userID)->first();
+        return response()->json([
+            'success' => true,
+            'message' => 'Profile fetched',
+            'data' => [
+                'customer' => $customer->load('user')
+            ]
+        ]);
+    }
+
+    public function getUser()
+    {
+        $user = Auth::user();
+        return response()->json([
+            'success' => true,
+            'message' => 'User fetched',
+            'data' => [
+                'user' => $user
+            ]
+        ]);
     }
 }
