@@ -126,6 +126,32 @@ class ResepController extends Controller
         }
     }
 
+    public function updateRecipeByIdProduct(Request $request, $id)
+    {
+        try {
+            $newRecipes = $request->all();
+            $updatedRecipes = [];
+            foreach ($newRecipes as $newRecipe) {
+                $recipe = Resep::updateOrCreate(
+                    ['id_bahan_baku' => $newRecipe['id_bahan_baku'], 'id_produk' => $id],
+                    ['jumlah_bahan' => $newRecipe['jumlah_bahan']]
+                );
+                $updatedRecipes[] = $recipe;
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Recipe Successfully Updated',
+                'data' => ['recipe' => $updatedRecipes]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
     public function deleteRecipe($id)
     {
         try {
