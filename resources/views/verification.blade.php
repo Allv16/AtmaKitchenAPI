@@ -1,7 +1,10 @@
 <html>
 
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <style>
     body {
@@ -12,7 +15,7 @@
 
     h1 {
         color: #88B04B;
-        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-family: "Cormorant", sans-serif;
         font-weight: 900;
         font-size: 40px;
         margin-bottom: 10px;
@@ -20,7 +23,7 @@
 
     p {
         color: #404F5E;
-        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-family: "Mulish", sans-serif;
         font-size: 20px;
         margin: 0;
     }

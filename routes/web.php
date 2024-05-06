@@ -21,4 +21,8 @@ Route::get('/verification', function () {
     return view('verification');
 });
 
+Route::get('/reset-password', function () {
+    return view('resetPassword');
+});
+
 Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\VerificationController::class, 'verify']);
