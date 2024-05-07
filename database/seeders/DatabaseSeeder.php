@@ -238,7 +238,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null'
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png'
             ],
             [
                 'id_penitip' => 2,
@@ -247,7 +247,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
             ],
             [
                 'id_penitip' => 3,
@@ -256,7 +256,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
             ],
             [
                 'id_penitip' => 4,
@@ -265,7 +265,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
             ],
             [
                 'id_penitip' => 5,
@@ -274,7 +274,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
             ],
         ]);
 
@@ -286,7 +286,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -295,7 +295,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -304,7 +304,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -313,7 +313,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -322,7 +322,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -331,7 +331,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -340,7 +340,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -349,7 +349,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -358,7 +358,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -367,7 +367,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -376,7 +376,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Roti',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -385,7 +385,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Roti',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -394,7 +394,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Roti',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -403,7 +403,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Minuman',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -412,7 +412,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Minuman',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
         ]);
@@ -425,7 +425,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Hampers',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -435,7 +435,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Hampers',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ],
             [
@@ -445,7 +445,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Hampers',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'http://null',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
                 'id_penitip' => null,
             ]
         ]);
