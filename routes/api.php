@@ -23,6 +23,7 @@ Route::post('/validate-forgot-password', [AuthController::class, 'validateForgot
 Route::get('/auth/usermame/is-available/{username}', [AuthController::class, 'isUsernameAvailable']);
 Route::get('/auth/email/is-available/{email}', [AuthController::class, 'isEmailAvailable']);
 Route::get('/auth/email/is-verified/{username}', [AuthController::class, 'isEmailVerified']);
+Route::post('/product/upload-photo', [ProdukController::class, 'addImageProduct']);
 
 
 
@@ -55,7 +56,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/products/category/hampers', [ProdukController::class, 'getHampersProducts']);
     Route::get('/products/category/snack', [ProdukController::class, 'getSnackProducts']);
     Route::get('/products/{id}', [ProdukController::class, 'getProductById']);
-    Route::post('/product/upload-photo', [ProdukController::class, 'addImageProduct']);
+
 
     Route::post('/products/add', [ProdukController::class, 'addProduct']);
     Route::put('/products/edit/{id}', [ProdukController::class, 'editProduct']);
