@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_pengeluaran_lain_lain');
             $table->string('nama_pengeluaran');
             $table->dateTime('tanggal_pengeluaran');
-            $table->decimal('total_pengeluaran', 15, 2);
+            $table->double('total_pengeluaran');
 
             $table->timestamps();
             $table->softDeletes();
