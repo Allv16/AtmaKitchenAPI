@@ -130,7 +130,10 @@ class ResepController extends Controller
     {
         try {
             $newRecipes = $request->all();
+
             $updatedRecipes = [];
+
+            Resep::where('id_produk', $id)->delete();
             foreach ($newRecipes as $newRecipe) {
                 $recipe = Resep::updateOrCreate(
                     ['id_bahan_baku' => $newRecipe['id_bahan_baku'], 'id_produk' => $id],
