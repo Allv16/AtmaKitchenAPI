@@ -11,6 +11,8 @@ use App\Http\Controllers\ResepController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PenitipController;
+use App\Http\Controllers\PembelianBahanBakuController;
+use App\Http\Controllers\PengeluaranLainLainController;
 
 //Auth
 Route::post('/login', [AuthController::class, 'login']);
@@ -99,4 +101,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/penitip/{idPenitip}', [PenitipController::class, 'getPenitipById']);
     Route::put('/penitip/edit/{idPenitip}', [PenitipController::class, 'editPenitip']);
     Route::delete('/penitip/delete/{idPenitip}', [PenitipController::class, 'deletePenitip']);
+
+    //Pembelian bahan baku
+    Route::get('/pembelian-bahan-baku', [PembelianBahanBakuController::class, 'getAllPembelianBahanBaku']);
+    Route::get('/pembelian-bahan-baku/{id}', [PembelianBahanBakuController::class, 'getPembelianBahanBakuById']);
+    Route::post('/pembelian-bahan-baku/add', [PembelianBahanBakuController::class, 'addPembelianBahanBaku']);
+    Route::put('/pembelian-bahan-baku/edit/{id}', [PembelianBahanBakuController::class, 'editPembelianBahanBaku']);
+    Route::delete('/pembelian-bahan-baku/delete/{id}', [PembelianBahanBakuController::class, 'deletePembelianBahanBaku']);
+
+    //pengeluaran lain lain
+    Route::get('/pengeluaran-lain-lain', [PengeluaranLainLainController::class, 'getAllPengeluaranLainLain']);
+    Route::get('/pengeluaran-lain-lain/{id}', [PengeluaranLainLainController::class, 'getPengeluaranLainLainById']);
+    Route::post('/pengeluaran-lain-lain/add', [PengeluaranLainLainController::class, 'addPengeluaranLainLain']);
+    Route::put('/pengeluaran-lain-lain/edit/{id}', [PengeluaranLainLainController::class, 'updatePengeluaranLainLain']);
+    Route::delete('/pengeluaran-lain-lain/delete/{id}', [PengeluaranLainLainController::class, 'deletePengeluaranLainLain']);
 });
