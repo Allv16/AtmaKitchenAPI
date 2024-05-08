@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->id('id_detail_transaksi');
             $table->integer('jumlah_item');
-            $table->float('harga_satuan');
+            $table->double('harga_satuan');
             $table->string('id_transaksi');
 
             $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi');

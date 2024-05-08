@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('karyawan', function (Blueprint $table) {
             $table->id('id_karyawan');
             $table->string('nama_karyawan');
-            $table->string('gaji_karyawan');
-            $table->string('bonus_gaji_karyawan');
+            $table->double('gaji_karyawan');
+            $table->double('bonus_gaji_karyawan');
 
             $table->timestamps();
             $table->softDeletes();

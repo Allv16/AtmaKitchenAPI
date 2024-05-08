@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_produk');
             $table->string('nama_produk');
             $table->string('deskripsi');
-            $table->float('harga');
+            $table->double('harga');
             $table->integer('limit_produksi');
             $table->string('jenis_produk');
             $table->string('foto');
