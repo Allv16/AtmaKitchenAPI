@@ -13,6 +13,10 @@ class Transaksi extends Model
 
     protected $primaryKey = 'id_transaksi';
 
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     protected $fillable = [
         'tanggal_nota_dibuat',
         'tanggal_diterima',
@@ -40,5 +44,10 @@ class Transaksi extends Model
     public function detailTransaksi()
     {
         return $this->hasMany(DetailTransaksi::class, 'id_transaksi', 'id_transaksi');
+    }
+
+    public function pembayaran()
+    {
+        return $this->belongsTo(Pembayaran::class, 'id_pembayaran', 'id_pembayaran');
     }
 }

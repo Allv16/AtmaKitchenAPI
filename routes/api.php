@@ -13,6 +13,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PenitipController;
 use App\Http\Controllers\PembelianBahanBakuController;
 use App\Http\Controllers\PengeluaranLainLainController;
+use App\Http\Controllers\TransaksiController;
 
 //Auth
 Route::post('/login', [AuthController::class, 'login']);
@@ -93,6 +94,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/karyawan/{idKaryawan}', [KaryawanController::class, 'getKaryawanById']);
     Route::put('/karyawan/edit/{idkaryawan}', [KaryawanController::class, 'editKaryawan']);
     Route::delete('/karyawan/delete/{idkaryawan}', [KaryawanController::class, 'deleteKaryawan']);
+    //Absen
+    Route::post('/karyawan/absen', [KaryawanController::class, 'absentKaryawan']);
+    Route::get('/karyawan/absen/{date}', [KaryawanController::class, 'getAbsentKaryawan']);
+    Route::delete('/karyawan/absen/{id}', [KaryawanController::class, 'deleteAbsentKaryawan']);
+
+
 
     //penitip
     Route::get('/penitip', [PenitipController::class, 'getAllPenitip']);
@@ -115,4 +122,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/pengeluaran-lain-lain/add', [PengeluaranLainLainController::class, 'addPengeluaranLainLain']);
     Route::put('/pengeluaran-lain-lain/edit/{id}', [PengeluaranLainLainController::class, 'updatePengeluaranLainLain']);
     Route::delete('/pengeluaran-lain-lain/delete/{id}', [PengeluaranLainLainController::class, 'deletePengeluaranLainLain']);
+
+    //Transaksi
+    Route::get('/transaksi/{id}', [TransaksiController::class, 'getAllTransactionByIdCustomer']);
 });
