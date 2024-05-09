@@ -62,13 +62,12 @@ class PembelianBahanBakuController extends Controller
         }
     }
 
-    public function editPembelianBahanBaku(Request $request)
+    public function editPembelianBahanBaku(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'tanggal_pembelian' => 'required',
             'jumlah_pembelian' => 'required|numeric',
             'harga_beli' => 'required|numeric',
-            'id_bahan_baku' => 'required|numeric'
         ]);
 
         if ($validator->fails()) {
@@ -80,7 +79,14 @@ class PembelianBahanBakuController extends Controller
         }
 
         try {
-            $pembelianBahanBaku = PembelianBahanBaku::find($request->id);
+            $pembelianBahanBaku = PembelianBahanBaku::find($id);
+            if ($pembelianBahanBaku == null) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Ingredients Purchase Not Found',
+                    'data' => null
+                ], 404);
+            }
             $pembelianBahanBaku->update($request->all());
             return response()->json([
                 'success' => true,
