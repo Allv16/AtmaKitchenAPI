@@ -47,6 +47,9 @@ class PembelianBahanBakuController extends Controller
         try {
             $pembelianBahanBaku = PembelianBahanBaku::create($request->all());
             $pembelianBahanBaku->save();
+            $ingreditents = $pembelianBahanBaku->bahan_baku;
+            $ingreditents->stok += $pembelianBahanBaku->jumlah_pembelian;
+            $ingreditents->save();
             return response()->json([
                 'success' => true,
                 'message' => 'Ingredients Purchase Successfully Added',
@@ -87,11 +90,16 @@ class PembelianBahanBakuController extends Controller
                     'data' => null
                 ], 404);
             }
+            $stokLama = $pembelianBahanBaku->jumlah_pembelian;
             $pembelianBahanBaku->update($request->all());
+            $ingreditents = $pembelianBahanBaku->bahan_baku;
+            $ingreditents->stok -= $stokLama;
+            $ingreditents->stok += $request->jumlah_pembelian;
+            $ingreditents->save();
             return response()->json([
                 'success' => true,
                 'message' => 'Ingredients Purchase Successfully Updated',
-                'data' => ['pembelian_bahan_baku' => $pembelianBahanBaku]
+                'data' => ['pembelian_bahan_baku' => $pembelianBahanBaku, 'stok_lama' => $stokLama]
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
