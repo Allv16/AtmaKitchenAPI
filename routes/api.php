@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::get('/auth/user', [AuthController::class, 'getUser']);
     Route::post('/auth/user/change-password', [AuthController::class, 'change_password']);
+    Route::put('/auth/user/edit-profile/{idCustomer}', [AuthController::class, 'editProfile']);
 
     //Role
     Route::post('/roles/add', [RoleController::class, 'addRole']);
@@ -125,4 +126,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Transaksi
     Route::get('/transaksi/{id}', [TransaksiController::class, 'getAllTransactionByIdCustomer']);
+    Route::get('/transaksi/history/{id}', [TransaksiController::class, 'getHistoryTransactionByIdCustomer']);
 });

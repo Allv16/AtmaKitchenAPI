@@ -332,6 +332,46 @@ class AuthController extends Controller
         ]);
     }
 
+    public function editProfile(Request $request, $idCustomer)
+    {
+        $validators = Validator::make($request->all(), [
+            'nama_customer' => 'required',
+            'no_telp' => 'required|numeric',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required'
+        ]);
+        if ($validators->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validators->errors(),
+                'data' => null
+            ], 400);
+        }
+        try {
+            $customer = Customer::find($idCustomer);
+            if (!$customer) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Customer not found',
+                    'data' => null
+                ], 404);
+            }
+            $customer->update($request->all());
+            return response()->json([
+                'success' => true,
+                'message' => 'Customer updated',
+                'data' => $customer
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update customer',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
     public function getUser()
     {
         $user = Auth::user();
