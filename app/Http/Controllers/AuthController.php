@@ -344,6 +344,18 @@ class AuthController extends Controller
         ]);
     }
 
+    public function getAllCustomer()
+    {
+        $customer = Customer::all();
+        return response()->json([
+            'success' => true,
+            'message' => 'User fetched',
+            'data' => [
+                'customer' => $customer
+            ]
+        ]);
+    }
+
     public function change_password(Request $request)
     {
         $validators = Validator::make($request->all(), [

@@ -27,7 +27,7 @@ Route::get('/auth/usermame/is-available/{username}', [AuthController::class, 'is
 Route::get('/auth/email/is-available/{email}', [AuthController::class, 'isEmailAvailable']);
 Route::get('/auth/email/is-verified/{username}', [AuthController::class, 'isEmailVerified']);
 Route::post('/product/upload-photo', [ProdukController::class, 'addImageProduct']);
-
+Route::get('/customer', [AuthController::class, 'getAllCustomer']);
 
 
 //Role
