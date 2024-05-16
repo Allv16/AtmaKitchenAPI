@@ -18,6 +18,7 @@ class Transaksi extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'id_transaksi',
         'tanggal_nota_dibuat',
         'tanggal_diterima',
         'tanggal_diproses',
@@ -49,5 +50,15 @@ class Transaksi extends Model
     public function pembayaran()
     {
         return $this->belongsTo(Pembayaran::class, 'id_pembayaran', 'id_pembayaran');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'id_customer', 'id_customer');
+    }
+
+    public function pengiriman()
+    {
+        return $this->hasOne(Pengiriman::class, 'id_transaksi', 'id_transaksi');
     }
 }

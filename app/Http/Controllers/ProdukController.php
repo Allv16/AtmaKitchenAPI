@@ -13,10 +13,19 @@ use Illuminate\Validation\Rule;
 
 class ProdukController extends Controller
 {
-    public function getAllProducts()
+    public function getAllProducts(Request $request)
     {
+        $date = $request->query('date');
+        if (!$date) {
+            $date = date('Y-m-d');
+        }
         try {
             $products = Produk::orderBy('nama_produk')->get();
+            $products = $products->map(function ($product) use ($date) {
+                $product->stok = $product->stok($date);
+                return $product;
+            });
+
             return response()->json([
                 'success' => true,
                 'message' => 'Success Retrive All Products',
@@ -376,5 +385,22 @@ class ProdukController extends Controller
             'message' => 'Product found',
             'data' => ['product' => $product]
         ], 200);
+    }
+
+    public function getProductWithStock()
+    {
+        $products = Produk::all();
+        $date = date('Y-m-d');
+
+        $products = $products->map(function ($product) use ($date) {
+            $product->stok = $product->stok($date);
+            return $product;
+        });
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Product found',
+            'data' => ['product' => $products]
+        ]);
     }
 }

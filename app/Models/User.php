@@ -60,4 +60,9 @@ class User extends Authenticatable implements CanResetPasswordContract
             'password' => 'hashed',
         ];
     }
+
+    public function customer()
+    {
+        return $this->hasOne(Customer::class, 'id_user', 'id_user');
+    }
 }

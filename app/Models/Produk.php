@@ -43,4 +43,17 @@ class Produk extends Model
     {
         return $this->hasMany(DetailHampers::class, 'id_hampers', 'id_produk');
     }
+
+    public function stok($date)
+    {
+        $totalSold = $this->detailTransaksi()
+            ->whereHas('transaksi', function ($query) use ($date) {
+                $query->whereDate('tanggal_nota_dibuat', $date);
+            })
+            ->sum('jumlah_item');
+
+        $stock = $this->limit_produksi - $totalSold;
+
+        return $stock;
+    }
 }
