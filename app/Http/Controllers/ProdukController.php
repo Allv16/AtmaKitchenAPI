@@ -369,10 +369,12 @@ class ProdukController extends Controller
         ], 200);
     }
 
-    public function getProductById($id)
+    public function getProductById(Request $request, $id)
     {
-
+        $date = $request->query('date');
         $product = Produk::find($id);
+        $product->stok = $product->stok($date);
+
         if (!$product) {
             return response()->json([
                 'success' => false,
