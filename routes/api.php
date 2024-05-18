@@ -14,6 +14,8 @@ use App\Http\Controllers\PenitipController;
 use App\Http\Controllers\PembelianBahanBakuController;
 use App\Http\Controllers\PengeluaranLainLainController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\PembayaranController;
 
 //Auth
 Route::post('/login', [AuthController::class, 'login']);
@@ -28,6 +30,19 @@ Route::get('/auth/email/is-available/{email}', [AuthController::class, 'isEmailA
 Route::get('/auth/email/is-verified/{username}', [AuthController::class, 'isEmailVerified']);
 Route::post('/product/upload-photo', [ProdukController::class, 'addImageProduct']);
 Route::get('/customer', [AuthController::class, 'getAllCustomer']);
+
+//produk
+Route::get('/products', [ProdukController::class, 'getAllProducts']);
+Route::get('/products/getTopProduct', [ProdukController::class, 'getTopProduct']);
+Route::get('/products/random', [ProdukController::class, 'getRandomProducts']);
+Route::get('/products/own-products', [ProdukController::class, 'getOwnProducts']);
+Route::get('/products/category/cakes', [ProdukController::class, 'getCakesProducts']);
+Route::get('/products/category/roti', [ProdukController::class, 'getRotiProducts']);
+Route::get('/products/category/minuman', [ProdukController::class, 'getMinumanProducts']);
+Route::get('/products/category/hampers', [ProdukController::class, 'getHampersProducts']);
+Route::get('/products/category/snack', [ProdukController::class, 'getSnackProducts']);
+Route::get('/products/{id}', [ProdukController::class, 'getProductById']);
+Route::get('/products-stock', [ProdukController::class, 'getProductWithStock']);
 
 
 //Role
@@ -49,17 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/roles/edit/{idRole}', [RoleController::class, 'editRole']);
     Route::delete('/roles/delete/{idRole}', [RoleController::class, 'deleteRole']);
 
-    //produk
-    Route::get('/products', [ProdukController::class, 'getAllProducts']);
-    Route::get('/products/getTopProduct', [ProdukController::class, 'getTopProduct']);
-    Route::get('/products/random', [ProdukController::class, 'getRandomProducts']);
-    Route::get('/products/own-products', [ProdukController::class, 'getOwnProducts']);
-    Route::get('/products/category/cakes', [ProdukController::class, 'getCakesProducts']);
-    Route::get('/products/category/roti', [ProdukController::class, 'getRotiProducts']);
-    Route::get('/products/category/minuman', [ProdukController::class, 'getMinumanProducts']);
-    Route::get('/products/category/hampers', [ProdukController::class, 'getHampersProducts']);
-    Route::get('/products/category/snack', [ProdukController::class, 'getSnackProducts']);
-    Route::get('/products/{id}', [ProdukController::class, 'getProductById']);
+
 
 
     Route::post('/products/add', [ProdukController::class, 'addProduct']);
@@ -127,4 +132,16 @@ Route::middleware('auth:sanctum')->group(function () {
     //Transaksi
     Route::get('/transaksi/{id}', [TransaksiController::class, 'getAllTransactionByIdCustomer']);
     Route::get('/transaksi/history/{id}', [TransaksiController::class, 'getHistoryTransactionByIdCustomer']);
+    Route::post('/transaksi', [TransaksiController::class, 'addTransaction']);
+    Route::get('/transaksi-admin', [TransaksiController::class, 'getTransactionForAdminToDo']);
+    Route::put('/delivery/edit/range/{id}', [TransaksiController::class, 'updateDeliveryRange']);
+
+    //Keranjang
+    Route::get('/keranjang', [KeranjangController::class, 'getKeranjang']);
+    Route::put('/keranjang/increment/{id}', [KeranjangController::class, 'incrementKeranjang']);
+    Route::put('/keranjang/decrement/{id}', [KeranjangController::class, 'decrementKeranjang']);
+    Route::delete('/keranjang/{id}', [KeranjangController::class, 'deleteKeranjang']);
+
+    //Pembayaran
+    Route::post('/pembayaran/bayar/{id}', [PembayaranController::class, 'payTransaction']);
 });

@@ -35,7 +35,7 @@ class AuthController extends Controller
                 'success' => true,
                 'message' => 'Login successful',
                 'data' => [
-                    'user' => $user,
+                    'user' => $user->load('customer'),
                     'token' => $token
                 ]
             ]);
@@ -331,6 +331,7 @@ class AuthController extends Controller
             ]
         ]);
     }
+
 
     public function editProfile(Request $request, $idCustomer)
     {

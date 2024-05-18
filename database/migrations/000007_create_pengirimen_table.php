@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('pengiriman', function (Blueprint $table) {
             $table->id('id_pengiriman');
-            $table->float('jarak_pengiriman');
-            $table->float('biaya_pengiriman');
-            $table->string('kurir');
-            $table->dateTime('tanggal_dikirim');
+            $table->float('jarak_pengiriman')->nullable();
+            $table->float('biaya_pengiriman')->nullable();
+            $table->string('kurir')->nullable();
+            $table->dateTime('tanggal_dikirim')->nullable();
             $table->string('alamat_tujuan');
 
             $table->string('id_transaksi');

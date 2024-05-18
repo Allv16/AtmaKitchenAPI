@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_pembayaran');
             $table->string('jenis_pembayaran');
             $table->string('bukti_pembayaran')->nullable();
-            $table->dateTime('tanggal_pembayaran');
+            $table->dateTime('tanggal_pembayaran')->nullable();
             $table->dateTime('tanggal_pembayaran_valid')->nullable();
             $table->double('total_pembayaran');
             $table->double('tip');
