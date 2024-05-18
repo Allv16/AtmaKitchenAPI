@@ -15,6 +15,7 @@ use App\Http\Controllers\PembelianBahanBakuController;
 use App\Http\Controllers\PengeluaranLainLainController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\PembayaranController;
 
 //Auth
 Route::post('/login', [AuthController::class, 'login']);
@@ -140,4 +141,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/keranjang/increment/{id}', [KeranjangController::class, 'incrementKeranjang']);
     Route::put('/keranjang/decrement/{id}', [KeranjangController::class, 'decrementKeranjang']);
     Route::delete('/keranjang/{id}', [KeranjangController::class, 'deleteKeranjang']);
+
+    //Pembayaran
+    Route::post('/pembayaran/bayar/{id}', [PembayaranController::class, 'payTransaction']);
 });

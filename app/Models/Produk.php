@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Produk extends Model
 {
@@ -46,12 +47,34 @@ class Produk extends Model
 
     public function stok($date)
     {
-        $totalSold = $this->detailTransaksi()
-            ->whereHas('transaksi', function ($query) use ($date) {
-                $query->whereDate('tanggal_nota_dibuat', $date);
-            })
-            ->sum('jumlah_item');
-
+        $totalSold = 0;
+        if ($this->jenis_produk == 'Cake') {
+            $productName = $this->nama_produk;
+            if (Str::contains($this->nama_produk, '1/2')) {
+                $productName = Str::before($this->nama_produk, ' (1/2 loyang)');
+            }
+            $totalSold =
+                DetailTransaksi::whereHas('produk', function ($query) use ($productName) {
+                    $query->where('nama_produk', 'like', $productName . '%');
+                })->whereHas('transaksi', function ($query) use ($date) {
+                    $query->whereDate('tanggal_nota_dibuat', $date);
+                })->get()->sum(function ($detailTransaksi) {
+                    if (!Str::contains($detailTransaksi->produk->nama_produk, '1/2')) {
+                        return $detailTransaksi->jumlah_item * 2;
+                    } else {
+                        return $detailTransaksi->jumlah_item;
+                    }
+                });
+            if (!Str::contains($this->nama_produk, '1/2')) {
+                $totalSold = ceil($totalSold / 2);
+            }
+        } else {
+            $totalSold = $this->detailTransaksi()
+                ->whereHas('transaksi', function ($query) use ($date) {
+                    $query->whereDate('tanggal_nota_dibuat', $date);
+                })
+                ->sum('jumlah_item');
+        }
         $stock = $this->limit_produksi - $totalSold;
 
         return $stock;
