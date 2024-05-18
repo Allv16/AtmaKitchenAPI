@@ -33,7 +33,7 @@ class TransaksiController extends Controller
     {
         try {
             $transaksi = Transaksi::where('id_customer', $id_customer)->where(function ($query) {
-                $query->where('status_transaksi', 'Selesai')->orWhere('status_transaksi', 'Ditolak');
+                $query->where('status_transaksi', 'Selesai')->orWhere('status_transaksi', 'Ditolak')->orWhere('status_transaksi', 'Diproses');
             })->get()->load('detailTransaksi.produk');
             return response()->json([
                 'success' => true,
