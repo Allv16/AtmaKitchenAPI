@@ -16,6 +16,7 @@ use App\Http\Controllers\PengeluaranLainLainController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\AlamatController;
 
 //Auth
 Route::post('/login', [AuthController::class, 'login']);
@@ -144,4 +145,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Pembayaran
     Route::post('/pembayaran/bayar/{id}', [PembayaranController::class, 'payTransaction']);
+
+    //Alamat
+    Route::get('/alamat/{id}', [AlamatController::class, 'getAlamatByIdCustomer']);
 });
