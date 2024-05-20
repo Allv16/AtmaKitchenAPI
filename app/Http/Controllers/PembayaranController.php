@@ -38,9 +38,12 @@ class PembayaranController extends Controller
                 ], 404);
             }
 
+            $transaksi = $pembayaran->transaksi;
+            $transaksi->status_transaksi = 'Paid';
             $pembayaran->bukti_pembayaran = $destinationPath;
             $pembayaran->tanggal_pembayaran = date('Y-m-d H:i:s');
             $pembayaran->save();
+            $transaksi->save();
 
             return response()->json([
                 'success' => true,
