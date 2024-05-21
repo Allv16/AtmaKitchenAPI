@@ -27,4 +27,9 @@ class Pembayaran extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function transaksi()
+    {
+        return $this->hasOne(Transaksi::class, 'id_pembayaran', 'id_pembayaran');
+    }
 }
