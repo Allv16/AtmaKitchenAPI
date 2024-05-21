@@ -94,12 +94,20 @@ class ProdukController extends Controller
         }
     }
 
-    public function getCakesProducts()
+    public function getCakesProducts(Request $request)
     {
+        $date = $request->query('date');
+        if (!$date) {
+            $date = date('Y-m-d');
+        }
         try {
             $cakesProducts = Produk::where('jenis_produk', 'Cake')
                 ->orderBy('nama_produk')
                 ->get();
+            $cakesProducts = $cakesProducts->map(function ($product) use ($date) {
+                $product->stok = $product->stok($date);
+                return $product;
+            });
             return response()->json([
                 'success' => true,
                 'message' => 'Success Retrive cakes products',
@@ -117,12 +125,20 @@ class ProdukController extends Controller
         }
     }
 
-    public function getRotiProducts()
+    public function getRotiProducts(Request $request)
     {
+        $date = $request->query('date');
+        if (!$date) {
+            $date = date('Y-m-d');
+        }
         try {
             $rotiProducts = Produk::where('jenis_produk', 'Roti')
                 ->orderBy('nama_produk')
                 ->get();
+            $rotiProducts = $rotiProducts->map(function ($product) use ($date) {
+                $product->stok = $product->stok($date);
+                return $product;
+            });
             return response()->json([
                 'success' => true,
                 'message' => 'Success Retrive roti products',
@@ -140,12 +156,20 @@ class ProdukController extends Controller
         }
     }
 
-    public function getMinumanProducts()
+    public function getMinumanProducts(Request $request)
     {
+        $date = $request->query('date');
+        if (!$date) {
+            $date = date('Y-m-d');
+        }
         try {
             $minumanProducts = Produk::where('jenis_produk', 'Minuman')
                 ->orderBy('nama_produk')
                 ->get();
+            $minumanProducts = $minumanProducts->map(function ($product) use ($date) {
+                $product->stok = $product->stok($date);
+                return $product;
+            });
             return response()->json([
                 'success' => true,
                 'message' => 'Success Retrive minuman products',
@@ -186,12 +210,21 @@ class ProdukController extends Controller
         }
     }
 
-    public function getSnackProducts()
+    public function getSnackProducts(Request $request)
     {
+        $date = $request->query('date');
+        if (!$date) {
+            $date = date('Y-m-d');
+        }
         try {
+
             $snackProducts = Produk::where('jenis_produk', 'Snack')
                 ->orderBy('nama_produk')
                 ->get();
+            $snackProducts = $snackProducts->map(function ($product) use ($date) {
+                $product->stok = $product->stok($date);
+                return $product;
+            });
             return response()->json([
                 'success' => true,
                 'message' => 'Success Retrive snack products',
