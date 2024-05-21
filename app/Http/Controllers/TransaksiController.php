@@ -290,4 +290,30 @@ class TransaksiController extends Controller
             ], 500);
         }
     }
+
+    public function getTransactionById($id)
+    {
+        try {
+            $transaksi = Transaksi::find($id);
+            if (!$transaksi) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Transaction Not Found',
+                    'data' => null
+                ], 404);
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Retrieved',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrive transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
 }
