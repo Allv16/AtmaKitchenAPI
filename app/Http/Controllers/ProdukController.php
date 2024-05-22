@@ -405,6 +405,9 @@ class ProdukController extends Controller
     public function getProductById(Request $request, $id)
     {
         $date = $request->query('date');
+        if (!$date) {
+            $date = date('Y-m-d');
+        }
         $product = Produk::find($id);
         $product->stok = $product->stok($date);
 
