@@ -233,6 +233,7 @@ class TransaksiController extends Controller
     {
         try {
             $transaksi = Transaksi::where('status_transaksi', 'Inputing Range')
+                ->orWhere('status_transaksi', 'Paid')
                 ->get();
             return response()->json([
                 'success' => true,
@@ -305,7 +306,7 @@ class TransaksiController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Transaction Successfully Retrieved',
-                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman'])]
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman', 'customer'])]
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
