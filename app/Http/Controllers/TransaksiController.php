@@ -317,4 +317,53 @@ class TransaksiController extends Controller
             ], 500);
         }
     }
+
+    public function getTransactionOnProcess()
+    {
+        try {
+            $transaksi = Transaksi::where('status_transaksi', 'On Process')
+                ->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Retrieved',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'customer', 'pengiriman'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrive transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+    public function updateTransactionToReady($id)
+    {
+        try {
+            $transaksi = Transaksi::find($id);
+            if (!$transaksi) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Transaction Not Found',
+                    'data' => null
+                ], 404);
+            }
+            $transaksi->status_transaksi = 'Ready';
+            $transaksi->tanggal_siap = date('Y-m-d H:i:s');
+            $transaksi->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Updated',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman', 'customer'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
 }

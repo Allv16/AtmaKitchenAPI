@@ -64,4 +64,37 @@ class KeranjangController extends Controller
             'data' => ['keranjang' => $keranjang],
         ], 200);
     }
+
+    public function addKeranjang(Request $request)
+    {
+        $validators = Validator::make($request->all(), [
+            'id_customer' => 'required',
+            'id_produk' => 'required',
+            'jumlah_item_keranjang' => 'required',
+            'tanggal_keranjang' => 'required',
+        ]);
+
+        if ($validators->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validators->errors(),
+                'data' => null
+            ], 400);
+        }
+        try {
+            $keranjang = Keranjang::create($request->all());
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Keranjang Successfully Added',
+                'data' => ['keranjang' => $keranjang],
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
 }
