@@ -58,4 +58,50 @@ class PembayaranController extends Controller
             ], 500);
         }
     }
+
+    public function confirmPayment(Request $request, $id)
+    {
+        $validators = Validator::make($request->all(), [
+            'total_pembayaran' => 'required',
+            'tip' => 'required',
+        ]);
+
+        if ($validators->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validators->errors(),
+                'data' => null
+            ], 400);
+        }
+        try {
+            $pembayaran = Pembayaran::find($id);
+            if (!$pembayaran) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Pembayaran not found',
+                    'data' => null
+                ], 404);
+            }
+
+            $pembayaran->transaksi->status_transaksi = 'Confirmed';
+            $pembayaran->transaksi->save();
+
+            $pembayaran->tanggal_pembayaran_valid = date('Y-m-d H:i:s');
+            $pembayaran->total_pembayaran = $request->total_pembayaran;
+            $pembayaran->tip = $request->tip;
+            $pembayaran->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Pembayaran Successfully Confirmed',
+                'data' => ['pembayaran' => $pembayaran],
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
 }

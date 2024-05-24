@@ -135,17 +135,21 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/transaksi/id/{id}', [TransaksiController::class, 'getTransactionById']);
     Route::get('/transaksi/history/{id}', [TransaksiController::class, 'getHistoryTransactionByIdCustomer']);
     Route::post('/transaksi', [TransaksiController::class, 'addTransaction']);
-    Route::get('/transaksi-admin', [TransaksiController::class, 'getTransactionForAdminToDo']);
+    Route::get('/transaksi-admin/todo', [TransaksiController::class, 'getTransactionForAdminToDo']);
+    Route::get('/transaksi-admin/on-process', [TransaksiController::class, 'getTransactionOnProcess']);
     Route::put('/delivery/edit/range/{id}', [TransaksiController::class, 'updateDeliveryRange']);
+    Route::put('/transaksi/ready/{id}', [TransaksiController::class, 'updateTransactionToReady']);
 
     //Keranjang
     Route::get('/keranjang', [KeranjangController::class, 'getKeranjang']);
+    Route::post('/keranjang', [KeranjangController::class, 'addKeranjang']);
     Route::put('/keranjang/increment/{id}', [KeranjangController::class, 'incrementKeranjang']);
     Route::put('/keranjang/decrement/{id}', [KeranjangController::class, 'decrementKeranjang']);
     Route::delete('/keranjang/{id}', [KeranjangController::class, 'deleteKeranjang']);
 
     //Pembayaran
     Route::post('/pembayaran/bayar/{id}', [PembayaranController::class, 'payTransaction']);
+    Route::put('/pembayaran/konfirm/{id}', [PembayaranController::class, 'confirmPayment']);
 
     //Alamat
     Route::get('/alamat/{id}', [AlamatController::class, 'getAlamatByIdCustomer']);

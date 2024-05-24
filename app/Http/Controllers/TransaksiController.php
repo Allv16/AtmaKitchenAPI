@@ -141,7 +141,6 @@ class TransaksiController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'tanggal_keranjang' => 'required',
             'tanggal_ambil' => 'required',
             'poin_digunakan' => 'required',
             'jenis_pengiriman' => 'required | in:Pickup,Delivery',
@@ -194,7 +193,7 @@ class TransaksiController extends Controller
             }
 
             $keranjang = Keranjang::where('id_customer', $request->id_customer)
-                ->whereDate('tanggal_keranjang', $request->tanggal_keranjang)
+                ->whereDate('tanggal_keranjang', $request->tanggal_ambil)
                 ->get();
 
             $total = 0;
@@ -210,9 +209,14 @@ class TransaksiController extends Controller
                 $item->delete();
             }
 
-            $transaksi->total = $total;
+            $transaksi->total = $total - $this->countDiscount($request->poin_digunakan);
+            $customer = $transaksi->customer;
+            $customer->poin -= $request->poin_digunakan;
+            $customer->save();
             $transaksi->poin_diperoleh = $this->getTotalPoints($total, $this->isBirthDay($birthday));
             $transaksi->save();
+
+
 
             return response()->json([
                 'success' => true,
@@ -312,6 +316,55 @@ class TransaksiController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to retrive transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+    public function getTransactionOnProcess()
+    {
+        try {
+            $transaksi = Transaksi::where('status_transaksi', 'On Process')
+                ->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Retrieved',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'customer', 'pengiriman'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrive transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+    public function updateTransactionToReady($id)
+    {
+        try {
+            $transaksi = Transaksi::find($id);
+            if (!$transaksi) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Transaction Not Found',
+                    'data' => null
+                ], 404);
+            }
+            $transaksi->status_transaksi = 'Ready';
+            $transaksi->tanggal_siap = date('Y-m-d H:i:s');
+            $transaksi->save();
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Updated',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman', 'customer'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update transaction',
                 'error' => $e->getMessage(),
                 'data' => null
             ], 500);

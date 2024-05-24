@@ -57,7 +57,7 @@ class Produk extends Model
                 DetailTransaksi::whereHas('produk', function ($query) use ($productName) {
                     $query->where('nama_produk', 'like', $productName . '%');
                 })->whereHas('transaksi', function ($query) use ($date) {
-                    $query->whereDate('tanggal_nota_dibuat', $date);
+                    $query->whereDate('tanggal_ambil', $date);
                 })->get()->sum(function ($detailTransaksi) {
                     if (!Str::contains($detailTransaksi->produk->nama_produk, '1/2')) {
                         return $detailTransaksi->jumlah_item * 2;
@@ -71,7 +71,7 @@ class Produk extends Model
         } else {
             $totalSold = $this->detailTransaksi()
                 ->whereHas('transaksi', function ($query) use ($date) {
-                    $query->whereDate('tanggal_nota_dibuat', $date);
+                    $query->whereDate('tanggal_ambil', $date);
                 })
                 ->sum('jumlah_item');
         }
