@@ -141,7 +141,6 @@ class TransaksiController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'tanggal_keranjang' => 'required',
             'tanggal_ambil' => 'required',
             'poin_digunakan' => 'required',
             'jenis_pengiriman' => 'required | in:Pickup,Delivery',
@@ -194,7 +193,7 @@ class TransaksiController extends Controller
             }
 
             $keranjang = Keranjang::where('id_customer', $request->id_customer)
-                ->whereDate('tanggal_keranjang', $request->tanggal_keranjang)
+                ->whereDate('tanggal_keranjang', $request->tanggal_ambil)
                 ->get();
 
             $total = 0;
@@ -210,9 +209,14 @@ class TransaksiController extends Controller
                 $item->delete();
             }
 
-            $transaksi->total = $total;
+            $transaksi->total = $total - $this->countDiscount($request->poin_digunakan);
+            $customer = $transaksi->customer;
+            $customer->poin -= $request->poin_digunakan;
+            $customer->save();
             $transaksi->poin_diperoleh = $this->getTotalPoints($total, $this->isBirthDay($birthday));
             $transaksi->save();
+
+
 
             return response()->json([
                 'success' => true,
