@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Resep;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Produk;
 
 class ResepController extends Controller
 {
@@ -178,6 +179,37 @@ class ResepController extends Controller
                 'message' => 'Failed to delete recipe',
                 'error' => $e->getMessage(),
                 'data' => null
+            ], 500);
+        }
+    }
+
+    public function getRecipesByManyProducts(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'products' => 'required|array',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors(),
+                'data' => null
+            ], 400);
+        }
+
+        try {
+            $products = Produk::whereIn('id_produk', $request->products)->with('resep')->get();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Products retrieved successfully',
+                'data' => $products
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while retrieving the products',
+                'data' => $e
             ], 500);
         }
     }

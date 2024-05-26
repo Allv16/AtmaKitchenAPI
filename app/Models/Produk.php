@@ -79,4 +79,9 @@ class Produk extends Model
 
         return $stock;
     }
+
+    public function resep()
+    {
+        return $this->hasMany(Resep::class, 'id_produk', 'id_produk')->with('bahanBaku');
+    }
 }
