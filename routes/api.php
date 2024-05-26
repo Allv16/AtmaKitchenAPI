@@ -17,6 +17,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\AlamatController;
+use App\Http\Controllers\PushNotificationController;
 
 //Auth
 Route::post('/login', [AuthController::class, 'login']);
@@ -153,4 +154,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Alamat
     Route::get('/alamat/{id}', [AlamatController::class, 'getAlamatByIdCustomer']);
+
+    //Push Notification
+    Route::post('/notification/fcm-token/{id}', [PushNotificationController::class, 'updateToken']);
 });

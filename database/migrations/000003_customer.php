@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('jenis_kelamin');
             $table->integer('poin');
             $table->string('no_telp');
+            $table->string('fcmToken')->nullable();
             $table->timestamps();
 
             //foreign key
