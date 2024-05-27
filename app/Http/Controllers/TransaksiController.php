@@ -189,9 +189,13 @@ class TransaksiController extends Controller
                     'id_transaksi' => $transaksi->id_transaksi
                 ]);
                 $pengiriman->save();
-                $transaksi->status_transaksi = 'Inputing Range';
-                $transaksi->save();
             }
+            if ($pembayaran->jenis_pembayaran == 'Cash') {
+                $transaksi->status_transaksi = 'Paid';
+            } else {
+                $transaksi->status_transaksi = 'Inputing Range';
+            }
+            $transaksi->save();
 
             $keranjang = Keranjang::where('id_customer', $request->id_customer)
                 ->whereDate('tanggal_keranjang', $request->tanggal_ambil)
