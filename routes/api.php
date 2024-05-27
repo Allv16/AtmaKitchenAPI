@@ -77,7 +77,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/recipes', [ResepController::class, 'getAllRecipes']);
     Route::get('/recipes/{idProduct}', [ResepController::class, 'getRecipesById']);
     Route::post('/recipes/add', [ResepController::class, 'addRecipe']);
-    Route::get('/products-recipe', [ResepController::class, 'getRecipesByManyProducts']);
+    Route::get('/recipes-transactions/{idTransaction}', [ResepController::class, 'getIngredientsForTransaction']);
 
 
     // Route::put('/recipes/edit/{id}', [ResepController::class, 'editRecipe']);

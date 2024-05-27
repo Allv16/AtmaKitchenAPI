@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Resep;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Produk;
+use App\Models\BahanBaku;
+use App\Models\Transaction;
+use App\Models\Transaksi;
 
 class ResepController extends Controller
 {
@@ -183,33 +186,54 @@ class ResepController extends Controller
         }
     }
 
-    public function getRecipesByManyProducts(Request $request)
+    public function getIngredientsForTransaction($idTransaction)
     {
-        $validator = Validator::make($request->all(), [
-            'products' => 'required|array',
-        ]);
+        $transaction = Transaksi::find($idTransaction);
 
-        if ($validator->fails()) {
+        if ($transaction == null) {
             return response()->json([
                 'success' => false,
-                'message' => $validator->errors(),
+                'message' => 'Transaction not found',
                 'data' => null
-            ], 400);
+            ], 404);
         }
 
         try {
-            $products = Produk::whereIn('id_produk', $request->products)->with('resep')->get();
+            $receipe = $transaction->detailTransaksi->flatMap(function ($item) {
+                if ($item->produk->jenis_produk == 'Hampers') {
+                    return $item->produk->detailHampers->flatMap(function ($detailHampers) use ($item) {
+                        return $detailHampers->items->resep->map(function ($resep) use ($item) {
+                            $resep->jumlah_bahan *= $item->jumlah_item;
+                            return $resep;
+                        });
+                    });
+                } else {
+                    return $item->produk->resep->map(function ($resep) use ($item) {
+                        $resep->jumlah_bahan *= $item->jumlah_item;
+                        return $resep;
+                    });
+                }
+            });
+
+
+            $groupedRecipes = $receipe->groupBy('id_bahan_baku')->map(function ($items) {
+                return [
+                    'id_bahan_baku' => $items[0]->id_bahan_baku,
+                    'jumlah_bahan' => $items->sum('jumlah_bahan'),
+                    'bahan_baku' => $items[0]->bahanBaku
+                ];
+            })->values();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Products retrieved successfully',
-                'data' => $products
+                'message' => 'Ingredients retrieved successfully',
+                'data' => ['ingredients' => $groupedRecipes]
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'An error occurred while retrieving the products',
-                'data' => $e
+                'message' => 'An error occurred while retrieving the ingredients',
+                'data' => $e->getMessage()
             ], 500);
         }
     }
