@@ -238,7 +238,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png'
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825762.png'
             ],
             [
                 'id_penitip' => 2,
@@ -247,7 +247,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825710.png',
             ],
             [
                 'id_penitip' => 3,
@@ -256,7 +256,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716827397.png',
             ],
             [
                 'id_penitip' => 4,
@@ -265,7 +265,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825785.png',
             ],
             [
                 'id_penitip' => 5,
@@ -274,7 +274,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Snack',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716826024.png',
             ],
         ]);
 
@@ -286,7 +286,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825654.png',
                 'id_penitip' => null,
             ],
             [
@@ -295,7 +295,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825654.png',
                 'id_penitip' => null,
             ],
             [
@@ -304,7 +304,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716826109.png',
                 'id_penitip' => null,
             ],
             [
@@ -313,7 +313,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716826109.png',
                 'id_penitip' => null,
             ],
             [
@@ -322,7 +322,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825309.png',
                 'id_penitip' => null,
             ],
             [
@@ -331,7 +331,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825309.png',
                 'id_penitip' => null,
             ],
             [
@@ -340,7 +340,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716829112.png',
                 'id_penitip' => null,
             ],
             [
@@ -349,7 +349,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716829112.png',
                 'id_penitip' => null,
             ],
             [
@@ -358,7 +358,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825553.png',
                 'id_penitip' => null,
             ],
             [
@@ -367,7 +367,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825553.png',
                 'id_penitip' => null,
             ],
             [
@@ -376,7 +376,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Roti',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825519.png',
                 'id_penitip' => null,
             ],
             [
@@ -385,16 +385,16 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Roti',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825829.png',
                 'id_penitip' => null,
             ],
             [
-                'nama_produk' => 'Roti Sosis',
+                'nama_produk' => 'Roti Keju',
                 'harga' => 150_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Roti',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716828538.png',
                 'id_penitip' => null,
             ],
             [
@@ -403,7 +403,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Minuman',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825399.png',
                 'id_penitip' => null,
             ],
             [
@@ -412,7 +412,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Minuman',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825493.png',
                 'id_penitip' => null,
             ],
         ]);
@@ -425,7 +425,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Hampers',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716828563.png',
                 'id_penitip' => null,
             ],
             [
@@ -435,7 +435,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Hampers',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716828586.png',
                 'id_penitip' => null,
             ],
             [
@@ -445,7 +445,7 @@ class DatabaseSeeder extends Seeder
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Hampers',
                 'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
-                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1715031510.png',
+                'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716828609.png',
                 'id_penitip' => null,
             ]
         ]);
@@ -639,6 +639,7 @@ class DatabaseSeeder extends Seeder
         );
 
         DB::table('resep')->insert([
+            //Lapis Legit
             [
                 'jumlah_bahan' => 500,
                 'id_produk' => 6,
@@ -650,40 +651,26 @@ class DatabaseSeeder extends Seeder
                 'id_bahan_baku' => 2,
             ],
             [
-                'jumlah_bahan' => 40,
+                'jumlah_bahan' => 50,
                 'id_produk' => 6,
                 'id_bahan_baku' => 3,
             ],
             [
                 'jumlah_bahan' => 300,
                 'id_produk' => 6,
-                'id_bahan_baku' => 7,
+                'id_bahan_baku' => 4,
             ],
             [
                 'jumlah_bahan' => 100,
+                'id_produk' => 6,
+                'id_bahan_baku' => 5,
+            ],
+            [
+                'jumlah_bahan' => 20,
                 'id_produk' => 6,
                 'id_bahan_baku' => 6,
             ],
-            [
-                'jumlah_bahan' => 100,
-                'id_produk' => 6,
-                'id_bahan_baku' => 8,
-            ],
-            [
-                'jumlah_bahan' => 10,
-                'id_produk' => 6,
-                'id_bahan_baku' => 9,
-            ],
-            [
-                'jumlah_bahan' => 25,
-                'id_produk' => 6,
-                'id_bahan_baku' => 10,
-            ],
-            [
-                'jumlah_bahan' => 100,
-                'id_produk' => 6,
-                'id_bahan_baku' => 11,
-            ],
+            
             //Lapis Surabaya
             [
                 'jumlah_bahan' => 500,
@@ -811,6 +798,219 @@ class DatabaseSeeder extends Seeder
                 'jumlah_bahan' => 50,
                 'id_produk' => 12,
                 'id_bahan_baku' => 9,
+            ],
+            [
+                'jumlah_bahan' => 50,
+                'id_produk' => 12,
+                'id_bahan_baku' => 9,
+            ],
+
+            //Spikoe
+               [
+                'jumlah_bahan' => 20,
+                'id_produk' => 14,
+                'id_bahan_baku' => 3,
+            ],
+            [
+                'jumlah_bahan' => 200,
+                'id_produk' => 14,
+                'id_bahan_baku' => 4,
+            ],
+            [
+                'jumlah_bahan' => 90,
+                'id_produk' => 14,
+                'id_bahan_baku' => 6,
+            ],
+            [
+                'jumlah_bahan' => 20,
+                'id_produk' => 14,
+                'id_bahan_baku' => 11,
+            ],
+            [
+                'jumlah_bahan' => 10,
+                'id_produk' => 14,
+                'id_bahan_baku' => 5,
+            ],
+            [
+                'jumlah_bahan' => 5,
+                'id_produk' => 14,
+                'id_bahan_baku' => 12,
+            ],
+            [
+                'jumlah_bahan' => 200,
+                'id_produk' => 14,
+                'id_bahan_baku' => 1,
+            ],
+            [
+                'jumlah_bahan' => 100,
+                'id_produk' => 14,
+                'id_bahan_baku' => 13,
+            ],
+
+            //Roti Sosis
+            [
+                'jumlah_bahan' => 250,
+                'id_produk' => 16,
+                'id_bahan_baku' => 3,
+            ],
+            [
+                'jumlah_bahan' => 30,
+                'id_produk' => 16,
+                'id_bahan_baku' => 4,
+            ],
+            [
+                'jumlah_bahan' => 3,
+                'id_produk' => 16,
+                'id_bahan_baku' => 6,
+            ],
+            [
+                'jumlah_bahan' => 3,
+                'id_produk' => 16,
+                'id_bahan_baku' => 11,
+            ],
+            [
+                'jumlah_bahan' => 150,
+                'id_produk' => 16,
+                'id_bahan_baku' => 5,
+            ],
+            [
+                'jumlah_bahan' => 50,
+                'id_produk' => 16,
+                'id_bahan_baku' => 16,
+            ],
+            [
+                'jumlah_bahan' => 2,
+                'id_produk' => 16,
+                'id_bahan_baku' => 1,
+            ],
+            [
+                'jumlah_bahan' => 10,
+                'id_produk' => 16,
+                'id_bahan_baku' => 13,
+            ],
+
+             //Milk Bun
+             [
+                'jumlah_bahan' => 250,
+                'id_produk' => 17,
+                'id_bahan_baku' => 6,
+            ],
+            [
+                'jumlah_bahan' => 30,
+                'id_produk' => 17,
+                'id_bahan_baku' => 4,
+            ],
+            [
+                'jumlah_bahan' => 3,
+                'id_produk' => 17,
+                'id_bahan_baku' => 15,
+            ],
+            [
+                'jumlah_bahan' => 4,
+                'id_produk' => 17,
+                'id_bahan_baku' => 14,
+            ],
+            [
+                'jumlah_bahan' => 300,
+                'id_produk' => 17,
+                'id_bahan_baku' => 16,
+            ],
+            [
+                'jumlah_bahan' => 60,
+                'id_produk' => 17,
+                'id_bahan_baku' => 1,
+            ],
+            [
+                'jumlah_bahan' => 3,
+                'id_produk' => 17,
+                'id_bahan_baku' => 7,
+            ],
+            [
+                'jumlah_bahan' => 200,
+                'id_produk' => 17,
+                'id_bahan_baku' => 18,
+            ],
+            [
+                'jumlah_bahan' => 50,
+                'id_produk' => 17,
+                'id_bahan_baku' => 5,
+            ],
+
+             //Roti Keju
+             [
+                'jumlah_bahan' => 250,
+                'id_produk' => 18,
+                'id_bahan_baku' => 6,
+            ],
+            [
+                'jumlah_bahan' => 30,
+                'id_produk' => 18,
+                'id_bahan_baku' => 4,
+            ],
+            [
+                'jumlah_bahan' => 3,
+                'id_produk' => 18,
+                'id_bahan_baku' => 15,
+            ],
+            [
+                'jumlah_bahan' => 3,
+                'id_produk' => 18,
+                'id_bahan_baku' => 14,
+            ],
+            [
+                'jumlah_bahan' => 150,
+                'id_produk' => 18,
+                'id_bahan_baku' => 19,
+            ],
+            [
+                'jumlah_bahan' => 50,
+                'id_produk' => 18,
+                'id_bahan_baku' => 1,
+            ],
+            [
+                'jumlah_bahan' => 2,
+                'id_produk' => 18,
+                'id_bahan_baku' => 7,
+            ],
+            [
+                'jumlah_bahan' => 350,
+                'id_produk' => 18,
+                'id_bahan_baku' => 20,
+            ],
+        
+            //Choco Creamy Latte
+            [
+                'jumlah_bahan' => 120,
+                'id_produk' => 19,
+                'id_bahan_baku' => 8,
+            ],
+            [
+                'jumlah_bahan' => 80,
+                'id_produk' => 19,
+                'id_bahan_baku' => 2,
+            ],
+            [
+                'jumlah_bahan' => 800,
+                'id_produk' => 19,
+                'id_bahan_baku' => 16,
+            ],
+
+
+             //Matcha Creamy Latte
+             [
+                'jumlah_bahan' => 120,
+                'id_produk' => 20,
+                'id_bahan_baku' => 21,
+            ],
+            [
+                'jumlah_bahan' => 80,
+                'id_produk' => 20,
+                'id_bahan_baku' => 2,
+            ],
+            [
+                'jumlah_bahan' => 800,
+                'id_produk' => 20,
+                'id_bahan_baku' => 16,
             ],
         ]);
 
