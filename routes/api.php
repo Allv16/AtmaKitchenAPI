@@ -143,6 +143,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/delivery/edit/range/{id}', [TransaksiController::class, 'updateDeliveryRange']);
     Route::put('/transaksi/ready/{id}', [TransaksiController::class, 'updateTransactionToReady']);
 
+    //Transaksi MO
+    Route::get('/transaksi-mo/todo', [TransaksiController::class, 'getTransactionForMOTodo']);
+
     //Keranjang
     Route::get('/keranjang', [KeranjangController::class, 'getKeranjang']);
     Route::post('/keranjang', [KeranjangController::class, 'addKeranjang']);

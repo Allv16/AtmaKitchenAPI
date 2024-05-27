@@ -370,4 +370,24 @@ class TransaksiController extends Controller
             ], 500);
         }
     }
+
+    public function getTransactionForMOTodo()
+    {
+        try {
+            $transaksi = Transaksi::where('status_transaksi', 'Payment Valid')
+                ->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Retrieved',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'customer', 'pengiriman'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrive transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
 }
