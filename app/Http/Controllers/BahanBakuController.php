@@ -153,4 +153,23 @@ class BahanBakuController extends Controller
             ], 500);
         }
     }
+
+    public function getLowIngredients()
+    {
+        try {
+            $ingredients = BahanBaku::whereColumn('stok', '<', 'min_stok')->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'Ingredients Successfully Retrieved',
+                'data' => ['ingredients' => $ingredients]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve all ingredients',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
 }

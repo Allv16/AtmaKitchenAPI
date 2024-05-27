@@ -10,6 +10,7 @@ use App\Models\Pembayaran;
 use App\Models\Keranjang;
 use App\Models\Pengiriman;
 use App\Models\DetailTransaksi;
+use App\Models\MutasiSaldo;
 use Carbon\Carbon;
 
 
@@ -385,6 +386,88 @@ class TransaksiController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to retrive transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+    public function processTransaction($idTransaction)
+    {
+        try {
+            $transaksi = Transaksi::find($idTransaction);
+            if (!$transaksi) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Transaction Not Found',
+                    'data' => null
+                ], 404);
+            }
+            $transaksi->status_transaksi = 'On Process';
+            $transaksi->save();
+
+            //Add Customer Point
+            $customer = $transaksi->customer;
+            $customer->poin = $customer->poin += $transaksi->poin_diperoleh;
+            $customer->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Updated',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman', 'customer'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+    public function rejectTransaction($idTransaction)
+    {
+        try {
+            $transaksi = Transaksi::find($idTransaction);
+            if (!$transaksi) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Transaction Not Found',
+                    'data' => null
+                ], 404);
+            }
+            $transaksi->status_transaksi = 'Rejected';
+            $transaksi->save();
+
+            // Return the points to the customer
+            $customer = $transaksi->customer;
+            $customer->poin += $transaksi->poin_digunakan;
+            $customer->save();
+
+            // Return the balance to the customer
+            $pembayaran = $transaksi->pembayaran;
+            $lastMutasi = MutasiSaldo::where('id_customer', $customer->id_customer)->orderBy('tanggal_mutasi', 'desc')->first();
+            $mutasi_saldo = MutasiSaldo::create([
+                'id_customer' => $customer->id_customer,
+                'debit' => $pembayaran->total_pembayaran,
+                'kredit' => 0,
+                'saldo' => $lastMutasi->saldo + $pembayaran->total_pembayaran,
+                'tanggal_mutasi' => date('Y-m-d H:i:s')
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Updated',
+                'data' => [
+                    'transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman', 'customer']),
+                    'mutasi_saldo' => $mutasi_saldo
+                ]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update transaction',
                 'error' => $e->getMessage(),
                 'data' => null
             ], 500);

@@ -17,6 +17,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\AlamatController;
+use App\Http\Controllers\SaldoController;
 
 //Auth
 Route::post('/login', [AuthController::class, 'login']);
@@ -89,6 +90,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/ingredients/add', [BahanBakuController::class, 'addIngredient']);
     Route::put('/ingredients/edit/{id}', [BahanBakuController::class, 'editIngredient']);
     Route::delete('/ingredients/delete/{id}', [BahanBakuController::class, 'deleteIngredient']);
+    Route::get('/low-ingredeints', [BahanBakuController::class, 'getLowIngredients']);
+
 
     //hampers
     Route::get('/hampers', [HampersController::class, 'getAllHampers']);
@@ -145,6 +148,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Transaksi MO
     Route::get('/transaksi-mo/todo', [TransaksiController::class, 'getTransactionForMOTodo']);
+    Route::put('/transaksi-mo/reject/{idTransaction}', [TransaksiController::class, 'rejectTransaction']);
+    Route::put('/transaksi-mo/accept/{idTransaction}', [TransaksiController::class, 'processTransaction']);
 
     //Keranjang
     Route::get('/keranjang', [KeranjangController::class, 'getKeranjang']);
@@ -159,4 +164,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Alamat
     Route::get('/alamat/{id}', [AlamatController::class, 'getAlamatByIdCustomer']);
+
+    //Saldo
+    Route::get('/saldo/{idCustomer}', [SaldoController::class, 'getSaldo']);
 });
