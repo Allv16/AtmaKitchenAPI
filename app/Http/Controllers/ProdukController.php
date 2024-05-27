@@ -410,6 +410,11 @@ class ProdukController extends Controller
         }
         $product = Produk::find($id);
         $product->stok = $product->stok($date);
+        if ($product->jenis_produk == 'Hampers') {
+            $product->items = $product->detailHampers()->get()->map(function ($item) {
+                return $item->items;
+            });
+        }
 
         if (!$product) {
             return response()->json([

@@ -83,7 +83,7 @@ class PembayaranController extends Controller
                 ], 404);
             }
 
-            $pembayaran->transaksi->status_transaksi = 'Confirmed';
+            $pembayaran->transaksi->status_transaksi = 'Payment Valid';
             $pembayaran->transaksi->save();
 
             $pembayaran->tanggal_pembayaran_valid = date('Y-m-d H:i:s');
