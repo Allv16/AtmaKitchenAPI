@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('mutasi_saldo', function (Blueprint $table) {
             $table->id('id_mutasi_saldo');
             $table->foreignId('id_customer')->references('id_customer')->on('customers');
-            $table->float('debit');
-            $table->float('kredit');
-            $table->float('saldo');
+            $table->double('debit');
+            $table->double('kredit');
+            $table->double('saldo');
             $table->timestamp('tanggal_mutasi');
             $table->timestamps();
             $table->softDeletes();
