@@ -327,7 +327,7 @@ class AuthController extends Controller
             'success' => true,
             'message' => 'Profile fetched',
             'data' => [
-                'customer' => $customer->load('user')
+                'customer' => $customer->load('user', 'saldo')
             ]
         ]);
     }

@@ -45,6 +45,7 @@ Route::get('/products/category/hampers', [ProdukController::class, 'getHampersPr
 Route::get('/products/category/snack', [ProdukController::class, 'getSnackProducts']);
 Route::get('/products/{id}', [ProdukController::class, 'getProductById']);
 Route::get('/products-stock', [ProdukController::class, 'getProductWithStock']);
+Route::get('/hampers', [HampersController::class, 'getAllHampers']);
 
 
 //Role
@@ -94,7 +95,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     //hampers
-    Route::get('/hampers', [HampersController::class, 'getAllHampers']);
+
     Route::get('/hampers/{idHampers}', [HampersController::class, 'getHampersById']);
     Route::post('/hampers/add', [HampersController::class, 'addHampers']);
     Route::put('/hampers/edit/{idHampers}', [HampersController::class, 'editHampers']);
@@ -145,6 +146,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/transaksi-admin/on-process', [TransaksiController::class, 'getTransactionOnProcess']);
     Route::put('/delivery/edit/range/{id}', [TransaksiController::class, 'updateDeliveryRange']);
     Route::put('/transaksi/ready/{id}', [TransaksiController::class, 'updateTransactionToReady']);
+    Route::get('/transaksi-admin/ready', [TransaksiController::class, 'getTransactionReady']);
+    Route::put('/transaksi-admin/after-ready/{id}', [TransaksiController::class, 'updateTransactionAfterReady']);
 
     //Transaksi MO
     Route::get('/transaksi-mo/todo', [TransaksiController::class, 'getTransactionForMOTodo']);

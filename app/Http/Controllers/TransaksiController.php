@@ -407,7 +407,7 @@ class TransaksiController extends Controller
                     'data' => null
                 ], 404);
             }
-            $transaksi->status_transaksi = 'On Process';
+            $transaksi->status_transaksi = 'Confirmed';
             $transaksi->save();
 
             //Add Customer Point
@@ -466,6 +466,65 @@ class TransaksiController extends Controller
                 'data' => [
                     'transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman', 'customer']),
                     'mutasi_saldo' => $mutasi_saldo
+                ]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+    public function getTransactionReady()
+    {
+        try {
+            $transaksi = Transaksi::where('status_transaksi', 'Ready')
+                ->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Retrieved',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'customer', 'pengiriman'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrive transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+    public function updateTransactionAfterReady($id)
+    {
+        try {
+            $transaksi = Transaksi::find($id);
+            if (!$transaksi) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Transaction Not Found',
+                    'data' => null
+                ], 404);
+            }
+
+            if ($transaksi->jenis_pengiriman == 'Delivery') {
+                $transaksi->status_transaksi = 'Delivered';
+                $transaksi->tanggal_diambil = date('Y-m-d H:i:s');
+                $transaksi->save();
+            } else {
+                $transaksi->status_transaksi = 'Completed';
+                $transaksi->tanggal_selesai = date('Y-m-d H:i:s');
+                $transaksi->save();
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Updated',
+                'data' => [
+                    'transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman', 'customer']),
                 ]
             ], 200);
         } catch (\Exception $e) {
