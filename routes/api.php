@@ -172,6 +172,11 @@ Route::middleware('auth:sanctum')->group(function () {
     //Saldo
     Route::get('/saldo/{idCustomer}', [SaldoController::class, 'getSaldo']);
 
+    //Pengembalian Dana
+    Route::post('/withdraw-request/{idCustomer}', [SaldoController::class, 'requestWithdraw']);
+    Route::get('/pengembalian-dana-admin', [SaldoController::class, 'getWithdrawForAdminTodo']);
+    Route::post('/confirm-withdraw/{id}', [SaldoController::class, 'confirmWithdraw']);
+
     //Laporan
     Route::get('/laporan/ingredients-usage', [LaporanController::class, 'ingredientsUsageReport']);
     Route::get('/laporan/monthly-sales', [LaporanController::class, 'salesReport']);

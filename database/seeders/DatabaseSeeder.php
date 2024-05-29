@@ -1246,7 +1246,7 @@ class DatabaseSeeder extends Seeder
             'tanggal_pengembalian_diterima' => '2024-02-03',
             'jumlah_pengembalian' => 850000,
             'nomor_rekening_tujuan' => $faker->bankAccountNumber,
-            'id_transaksi' => '24.02.001',
+            'status_pengembalian' => 'Waiting Confirmation',
             'id_customer' => 1,
         ]);
         //transaksi gagal 2
@@ -1303,7 +1303,7 @@ class DatabaseSeeder extends Seeder
             'tanggal_pengembalian_diterima' => '2024-02-13',
             'jumlah_pengembalian' => 850000,
             'nomor_rekening_tujuan' => $faker->bankAccountNumber,
-            'id_transaksi' => '24.02.002',
+            'status_pengembalian' => 'Waiting Confirmation',
             'id_customer' => 1,
         ]);
         //transaksi gagal 3
@@ -1360,7 +1360,7 @@ class DatabaseSeeder extends Seeder
             'tanggal_pengembalian_diterima' => '2024-02-14',
             'jumlah_pengembalian' => 850000,
             'nomor_rekening_tujuan' => $faker->bankAccountNumber,
-            'id_transaksi' => '24.02.003',
+            'status_pengembalian' => 'Waiting Confirmation',
             'id_customer' => 3,
         ]);
         //transaksi gagal 4
@@ -1417,7 +1417,7 @@ class DatabaseSeeder extends Seeder
             'tanggal_pengembalian_diterima' => '2024-03-03',
             'jumlah_pengembalian' => 850000,
             'nomor_rekening_tujuan' => $faker->bankAccountNumber,
-            'id_transaksi' => '24.03.001',
+            'status_pengembalian' => 'Waiting Confirmation',
             'id_customer' => 2,
         ]);
         //transaksi gagal 5
@@ -1474,7 +1474,7 @@ class DatabaseSeeder extends Seeder
             'tanggal_pengembalian_diterima' => '2024-03-04',
             'jumlah_pengembalian' => 850000,
             'nomor_rekening_tujuan' => $faker->bankAccountNumber,
-            'id_transaksi' => '24.03.002',
+            'status_pengembalian' => 'Waiting Confirmation',
             'id_customer' => 5,
         ]);
 
