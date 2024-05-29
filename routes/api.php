@@ -18,6 +18,7 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\SaldoController;
+use App\Http\Controllers\LaporanController;
 
 //Auth
 Route::post('/login', [AuthController::class, 'login']);
@@ -170,4 +171,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Saldo
     Route::get('/saldo/{idCustomer}', [SaldoController::class, 'getSaldo']);
+
+    //Laporan
+    Route::get('/laporan/ingredients-usage', [LaporanController::class, 'ingredientsUsageReport']);
 });
