@@ -17,10 +17,8 @@ return new class extends Migration
             $table->dateTime('tanggal_pengembalian_diterima')->nullable();
             $table->float('jumlah_pengembalian');
             $table->string('nomor_rekening_tujuan');
-
-            $table->string('id_transaksi');
+            $table->string('status_pengembalian');
             $table->foreignId('id_customer')->references('id_customer')->on('customers');
-            $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi');
             $table->timestamps();
             $table->softDeletes();
         });

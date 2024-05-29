@@ -167,4 +167,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Saldo
     Route::get('/saldo/{idCustomer}', [SaldoController::class, 'getSaldo']);
+    Route::post('/withdraw-request/{idCustomer}', [SaldoController::class, 'requestWithdraw']);
+    Route::get('/pengembalian-dana-admin', [SaldoController::class, 'getWithdrawForAdminTodo']);
+    Route::post('/confirm-withdraw/{id}', [SaldoController::class, 'confirmWithdraw']);
 });
