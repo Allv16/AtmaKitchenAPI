@@ -19,6 +19,7 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\SaldoController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\NotificationController;
 
 //Auth
 Route::post('/login', [AuthController::class, 'login']);
@@ -182,4 +183,7 @@ Route::middleware('auth:sanctum')->group(function () {
     //Laporan
     Route::get('/laporan/ingredients-usage', [LaporanController::class, 'ingredientsUsageReport']);
     Route::get('/laporan/monthly-sales', [LaporanController::class, 'salesReport']);
+
+    //Notification
+    Route::post('/notification/send/{idCustomer}', [NotificationController::class, 'sendNotification']);
 });
