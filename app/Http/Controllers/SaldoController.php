@@ -19,12 +19,9 @@ class SaldoController extends Controller
         ], 200);
     }
 
-    public function requestWithdraw(Request $request)
+    public function requestWithdraw(Request $request, $idCustomer)
     {
         $validator = Validator::make($request->all(), [
-            'id_customer' => 'required',
-            'jumlah_pengembalian' => 'required|numeric',
-            'tanggal_pengembalian_diajukan' => 'required',
             'nomor_rekening_tujuan' => 'required|numeric'
         ]);
 
@@ -36,18 +33,25 @@ class SaldoController extends Controller
             ], 400);
         }
 
-        $idCustomer = $request->input('id_customer');
-        $jumlahPengembalian = $request->input('jumlah_pengembalian');
-        $tanggalDiajukan = $request->input('tanggal_pengembalian_diajukan');
+        $tanggalDiajukan = date('Y-m-d H:i:s');
         $nomorRekening = $request->input('nomor_rekening_tujuan');
 
         $saldo = MutasiSaldo::where('id_customer', $idCustomer)->orderBy('tanggal_mutasi', 'desc')->first();
+        $jumlahPengembalian = $saldo->saldo;
         if (!$saldo || $saldo->saldo < $jumlahPengembalian) {
             return response()->json([
                 'success' => false,
                 'message' => 'Insufficient Balance'
             ], 400);
         }
+
+        $mutasiSaldo = MutasiSaldo::create([
+            'id_customer' => $idCustomer,
+            'debit' => 0,
+            'kredit' => $jumlahPengembalian,
+            'saldo' => $saldo->saldo - $jumlahPengembalian,
+            'tanggal_mutasi' => date('Y-m-d H:i:s')
+        ]);
 
         $withdrawRequest = PengembalianDana::create([
             'id_customer' => $idCustomer,
@@ -122,5 +126,26 @@ class SaldoController extends Controller
             'message' => 'Withdraw Request Confirmed Successfully',
             'data' => $withdrawRequest
         ], 200);
+    }
+
+    public function getWithdrawByIdCustomer($idCustomer)
+    {
+        try {
+            $pengembalianDana = PengembalianDana::where('id_customer', $idCustomer)
+                ->orderBy('tanggal_pengembalian_diajukan', 'desc')
+                ->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'Saldo Refund Successfully Retrieved',
+                'data' => ['refund' => $pengembalianDana]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrive saldo refund',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
     }
 }

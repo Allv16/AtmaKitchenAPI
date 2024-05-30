@@ -22,6 +22,12 @@ class PengembalianDana extends Model
         'status_pengembalian'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'id_customer', 'id_customer');
