@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Karyawan;
+use App\Models\Pembayaran;
+use App\Models\PengeluaranLainLain;
 use Illuminate\Http\Request;
 use App\Models\PenggunaanBahanBaku;
 use App\Models\Transaksi;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class LaporanController extends Controller
 {
@@ -59,4 +64,73 @@ class LaporanController extends Controller
             'data' => ['sales' => $salesReport]
         ]);
     }
+
+    public function attendanceReport(Request $request)
+    {
+        $year = $request->query('year');
+        
+        $attendanceReport = [];
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Successfully retrieved attendance report',
+            'data' => $attendanceReport
+        ]);
+    }
+
+   public function expensesincomeReport(Request $request)
+    {
+        $year = $request->query('year');
+        $month = $request->query('month');
+
+        $incomeReport = [];
+        $expensesReport = [];
+
+        $months = $month ? [$month] : range(1, 12);
+
+        foreach ($months as $month) {
+            $transactions = Transaksi::whereYear('tanggal_nota_dibuat', $year)
+                ->whereMonth('tanggal_nota_dibuat', $month)
+                ->where('status_transaksi', 'Completed')
+                ->get();
+
+            $tips = Pembayaran::whereYear('tanggal_pembayaran_valid', $year)
+                ->whereMonth('tanggal_pembayaran_valid', $month)
+                ->get();
+
+            $otherExpenses = PengeluaranLainLain::whereYear('tanggal_pengeluaran', $year)
+                ->whereMonth('tanggal_pengeluaran', $month)
+                ->select('nama_pengeluaran', 'total_pengeluaran')
+                ->get();
+
+            $totalSales = $transactions->sum('total');
+            $totalTips = $tips->sum('tip');
+
+            $incomeReport[] = [
+                'total_sales' => $totalSales,
+                'tips' => $totalTips,
+            ];
+
+            foreach ($otherExpenses as $expense) {
+                $expensesReport[] = [
+                    'nama_pengeluaran' => $expense->nama_pengeluaran,
+                    'total_expenses' => $expense->total_pengeluaran,
+                ];
+            }
+        }
+
+        $incomeExpense = [
+            'year' => $year,
+            'month' => $month,
+            'income' => $incomeReport,
+            'expenses' => $expensesReport,
+        ];
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Successfully retrieved expenses and income report',
+            'data' => ['IncomeExpense' => $incomeExpense],
+        ]);
+    }
+
 }

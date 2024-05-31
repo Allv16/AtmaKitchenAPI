@@ -180,4 +180,6 @@ Route::middleware('auth:sanctum')->group(function () {
     //Laporan
     Route::get('/laporan/ingredients-usage', [LaporanController::class, 'ingredientsUsageReport']);
     Route::get('/laporan/monthly-sales', [LaporanController::class, 'salesReport']);
+    Route::get('/laporan/attendance-report', [LaporanController::class, 'attendanceReport']);
+    Route::get('/laporan/expenses-income-reports', [LaporanController::class, 'expensesincomeReport']);
 });
