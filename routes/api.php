@@ -147,6 +147,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/transaksi-admin/on-process', [TransaksiController::class, 'getTransactionOnProcess']);
     Route::put('/delivery/edit/range/{id}', [TransaksiController::class, 'updateDeliveryRange']);
     Route::put('/transaksi/ready/{id}', [TransaksiController::class, 'updateTransactionToReady']);
+    Route::put('/transaksi/completed/{id}', [TransaksiController::class, 'updateTransactionToCompleted']);
     Route::get('/transaksi-admin/ready', [TransaksiController::class, 'getTransactionReady']);
     Route::put('/transaksi-admin/after-ready/{id}', [TransaksiController::class, 'updateTransactionAfterReady']);
 
@@ -175,6 +176,7 @@ Route::middleware('auth:sanctum')->group(function () {
     //Pengembalian Dana
     Route::post('/withdraw-request/{idCustomer}', [SaldoController::class, 'requestWithdraw']);
     Route::get('/pengembalian-dana-admin', [SaldoController::class, 'getWithdrawForAdminTodo']);
+    Route::get('/pengembalian-dana/customer/{idCustomer}', [SaldoController::class, 'getWithdrawByIdCustomer']);
     Route::post('/confirm-withdraw/{id}', [SaldoController::class, 'confirmWithdraw']);
 
     //Laporan
