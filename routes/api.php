@@ -148,12 +148,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/transaksi/{id}', [TransaksiController::class, 'getAllTransactionByIdCustomer']);
     Route::get('/transaksi/id/{id}', [TransaksiController::class, 'getTransactionById']);
     Route::get('/transaksi/history/{id}', [TransaksiController::class, 'getHistoryTransactionByIdCustomer']);
+    Route::get('/transaksi-cancelled', [TransaksiController::class, 'getTransactionCancelled']);
     Route::post('/transaksi', [TransaksiController::class, 'addTransaction']);
     Route::get('/transaksi-admin/todo', [TransaksiController::class, 'getTransactionForAdminToDo']);
     Route::get('/transaksi-admin/on-process', [TransaksiController::class, 'getTransactionOnProcess']);
     Route::put('/delivery/edit/range/{id}', [TransaksiController::class, 'updateDeliveryRange']);
     Route::put('/transaksi/ready/{id}', [TransaksiController::class, 'updateTransactionToReady']);
     Route::put('/transaksi/completed/{id}', [TransaksiController::class, 'updateTransactionToCompleted']);
+    Route::put('/transaksi/cancelled', [TransaksiController::class, 'cancleTransactionLatePayment']);
     Route::get('/transaksi-admin/ready', [TransaksiController::class, 'getTransactionReady']);
     Route::put('/transaksi-admin/after-ready/{id}', [TransaksiController::class, 'updateTransactionAfterReady']);
     Route::get('/transaksi-admin/testonggg', [TransaksiController::class, 'cancleTransactionLatePayment']);

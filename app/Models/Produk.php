@@ -54,7 +54,7 @@ class Produk extends Model
         if ($this->id_penitip != null) {
             $totalSold = $this->detailTransaksi()
                 ->whereHas('transaksi', function ($query) use ($date) {
-                    $query->where('status_transaksi', '!=', 'rejected');
+                    $query->where('status_transaksi', '!=', 'Rejected')->where('status_transaksi', '!=', 'Cancelled');
                 })
                 ->sum('jumlah_item');
         } else {

@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
 use App\Models\Pembayaran;
+use App\Models\pembelianBahanBaku;
 use App\Models\PengeluaranLainLain;
 use Illuminate\Http\Request;
 use App\Models\PenggunaanBahanBaku;
-use App\Models\Pengiriman;
 use App\Models\Penitip;
 use App\Models\Transaksi;
-use App\Models\PresensiKaryawan;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -124,6 +123,35 @@ class LaporanController extends Controller
             return $transaction->pengiriman;
         });
 
+        // Gaji
+
+        $presensi = Karyawan::with(['presensiKaryawan' => function ($query) use ($year, $month) {
+            $query->whereYear('tanggal_absen', $year)
+                ->whereMonth('tanggal_absen', $month);
+        }])->get();
+
+        $countDays = Carbon::createFromDate($year, $month)->daysInMonth;
+
+        $sumSalary = $presensi->map(function ($karyawan) use ($countDays) {
+            $presensiKaryawan = $karyawan->presensiKaryawan;
+            $totalAbsent = $presensiKaryawan->count();
+            $totalPresent = $countDays - $totalAbsent;
+            $bonus = 0;
+            if ($totalAbsent < 5) {
+                $bonus = $karyawan->bonus_gaji_karyawan;
+            }
+
+            return $karyawan->gaji_karyawan * $totalPresent + $bonus;
+        });
+
+        // Pembelian Bahan Baku
+        $ingredientsPurchases =  pembelianBahanBaku::whereYear('tanggal_pembelian', $year)
+            ->whereMonth('tanggal_pembelian', $month)
+            ->get()
+            ->sum(function ($purchase) {
+                return $purchase->jumlah_pembelian * $purchase->harga_beli;
+            });
+
         $otherExpenses = PengeluaranLainLain::whereYear('tanggal_pengeluaran', $year)
             ->whereMonth('tanggal_pengeluaran', $month)
             ->select('nama_pengeluaran', 'total_pengeluaran')
@@ -150,6 +178,16 @@ class LaporanController extends Controller
                     'type' => 'Pengiriman',
                     'income' => $totalDelivery,
                     'expenses' => 0,
+                ],
+                [
+                    'type' => 'Gaji Karyawan',
+                    'income' => 0,
+                    'expenses' => $sumSalary->sum(),
+                ],
+                [
+                    'type' => 'Pembelian Bahan Baku',
+                    'income' => 0,
+                    'expenses' => $ingredientsPurchases,
                 ],
 
             ];
@@ -203,49 +241,6 @@ class LaporanController extends Controller
             ];
         })->values();
 
-        // $transactions = DetailTransaksi::whereHas('transaksi', function($query) use ($year, $month) {
-        //         $query->whereYear('tanggal_nota_dibuat', $year)
-        //             ->whereMonth('tanggal_nota_dibuat', $month);
-        //     })
-        //     ->whereHas('produk', function($query) {
-        //         $query->whereNotNull('id_penitip');
-        //     })
-        //     ->with(['produk', 'produk.penitip']) 
-        //     ->get();
-
-        // $report = [];
-
-        // foreach ($transactions as $transaction) {
-        //     $partnerId = $transaction->produk->penitip->id_penitip;
-
-        //     if (!isset($report[$partnerId])) {
-        //         $report[$partnerId] = [
-        //             'Partner' => [
-        //                 'id_penitip' => $partnerId,
-        //                 'nama_penitip' => $transaction->produk->penitip->nama_penitip,
-        //                 'Products' => []
-        //             ],
-        //         ];
-        //     }
-
-        //     $productName = $transaction->produk->nama_produk;
-
-        //     if (!isset($report[$partnerId]['Partner']['Products'][$productName])) {
-        //         $report[$partnerId]['Partner']['Products'][$productName] = [
-        //             'nama_produk' => $productName,
-        //             'qty' => $transaction->jumlah_item,
-        //             'harga_satuan' => $transaction->harga_satuan,
-        //             'total' => $transaction->jumlah_item * $transaction->harga_satuan,
-        //             'komisi' => ($transaction->jumlah_item * $transaction->harga_satuan) * 0.20,
-        //             'diterima' => ($transaction->jumlah_item * $transaction->harga_satuan) * 0.80,
-        //         ];
-        //     } else {
-        //         $report[$partnerId]['Partner']['Products'][$productName]['qty'] += $transaction->jumlah_item;
-        //         $report[$partnerId]['Partner']['Products'][$productName]['total'] += $transaction->jumlah_item * $transaction->harga_satuan;
-        //         $report[$partnerId]['Partner']['Products'][$productName]['komisi'] += ($transaction->jumlah_item * $transaction->harga_satuan) * 0.20;
-        //         $report[$partnerId]['Partner']['Products'][$productName]['diterima'] += ($transaction->jumlah_item * $transaction->harga_satuan) * 0.80;
-        //     }
-        // }
 
         return response()->json([
             'success' => true,

@@ -190,11 +190,8 @@ class TransaksiController extends Controller
                     'id_transaksi' => $transaksi->id_transaksi
                 ]);
                 $pengiriman->save();
-                if ($pembayaran->jenis_pembayaran == 'Cash') {
-                    $transaksi->status_transaksi = 'Paid';
-                } else {
-                    $transaksi->status_transaksi = 'Inputing Range';
-                }
+
+                $transaksi->status_transaksi = 'Inputing Range';
             } else {
                 if ($pembayaran->jenis_pembayaran == 'Cash') {
                     $transaksi->status_transaksi = 'Paid';
@@ -282,14 +279,18 @@ class TransaksiController extends Controller
         }
 
         try {
-            $transaksi = Transaksi::find($id);
+            $transaksi = Transaksi::find($id)->load('pembayaran');
 
             $pengiriman = $transaksi->pengiriman;
             $pengiriman->jarak_pengiriman = $request->jarak_pengiriman;
             $pengiriman->biaya_pengiriman = $request->biaya_pengiriman;
             $pengiriman->save();
 
-            $transaksi->status_transaksi = 'Unpaid';
+            if ($transaksi->pembayaran->jenis_pembayaran == 'Cash') {
+                $transaksi->status_transaksi = 'Unpaid';
+            } else {
+                $transaksi->status_transaksi = 'Paid';
+            }
             $transaksi->total += $request->biaya_pengiriman;
             $transaksi->save();
 
@@ -359,7 +360,7 @@ class TransaksiController extends Controller
         $dateNow = date('Y-m-d');
         $dateTomorrow = Carbon::now()->addDay()->format('Y-m-d');
         try {
-            $transaksi = Transaksi::where('status_transaksi', 'Confirmed' )
+            $transaksi = Transaksi::where('status_transaksi', 'Confirmed')
                 ->whereDate('tanggal_ambil', $dateTomorrow)
                 ->get();
             return response()->json([
@@ -666,15 +667,30 @@ class TransaksiController extends Controller
                 $customer->poin += $item->poin_digunakan;
                 $customer->save();
             }
-            // return response()->json([
-            //     'success' => true,
-            //     'message' => 'Transaction Successfully Updated',
-            //     'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman'])]
-            // ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to update transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+    public function getTransactionCancelled()
+    {
+        try {
+            $transaksi = Transaksi::where('status_transaksi', 'Cancelled')
+                ->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Retrieved',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman', 'customer'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrive transaction',
                 'error' => $e->getMessage(),
                 'data' => null
             ], 500);
