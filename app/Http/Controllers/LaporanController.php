@@ -106,7 +106,7 @@ class LaporanController extends Controller
 
         $totalSales = $transactions->sum('total');
         $totalDelivery = $delivery->sum('biaya_pengiriman');
-        $totalSales = $totalSales - $totalDelivery; 
+        $totalSales = $totalSales - $totalDelivery;
         $totalTips = $pembayaran->sum('tip');
 
         $report =
@@ -126,7 +126,7 @@ class LaporanController extends Controller
                     'income' => $totalDelivery,
                     'expenses' => 0,
                 ],
-                
+
             ];
 
         if (!$otherExpenses->isEmpty()) {
@@ -148,53 +148,79 @@ class LaporanController extends Controller
         ]);
     }
 
-    public function partnerTransactionReport(Request $request){
+    public function partnerTransactionReport(Request $request)
+    {
         $year = $request->input('year');
         $month = $request->input('month');
 
-        $transactions = DetailTransaksi::whereHas('transaksi', function($query) use ($year, $month) {
-                $query->whereYear('tanggal_nota_dibuat', $year)
-                    ->whereMonth('tanggal_nota_dibuat', $month);
-            })
-            ->whereHas('produk', function($query) {
-                $query->whereNotNull('id_penitip');
-            })
-            ->with(['produk', 'produk.penitip']) 
+        $query = Penitip::join('produk', 'penitip.id_penitip', '=', 'produk.id_penitip')
+            ->join('detail_transaksi', 'detail_transaksi.id_produk', '=', 'produk.id_produk')
+            ->join('transaksi', 'transaksi.id_transaksi', '=', 'detail_transaksi.id_transaksi')
+            ->where('transaksi.status_transaksi', 'Completed')
+            ->whereYear('transaksi.tanggal_nota_dibuat', $year)
+            ->whereMonth('transaksi.tanggal_nota_dibuat', $month)
+            ->select('penitip.nama_penitip', 'produk.nama_produk', 'produk.harga', 'penitip.id_penitip')
             ->get();
 
-        $report = [];
+        $grouped = $query->groupBy(['nama_penitip', 'nama_produk',]);
 
-        foreach ($transactions as $transaction) {
-            $partnerId = $transaction->produk->penitip->id_penitip;
+        $report = $grouped->map(function ($items, $nama_penitip) {
+            return [
+                'nama_penitip' => $nama_penitip,
+                'id_penitip' => $items->first()->first()->id_penitip,
+                'products' => $items->map(function ($items, $nama_produk) {
+                    return [
+                        'nama_produk' => $nama_produk,
+                        'harga' => $items->first()->harga,
+                        'sold' => $items->count(),
+                    ];
+                })->values(),
+            ];
+        })->values();
 
-            if (!isset($report[$partnerId])) {
-                $report[$partnerId] = [
-                    'Partner' => [
-                        'id_penitip' => $partnerId,
-                        'nama_penitip' => $transaction->produk->penitip->nama_penitip,
-                        'Products' => []
-                    ],
-                ];
-            }
+        // $transactions = DetailTransaksi::whereHas('transaksi', function($query) use ($year, $month) {
+        //         $query->whereYear('tanggal_nota_dibuat', $year)
+        //             ->whereMonth('tanggal_nota_dibuat', $month);
+        //     })
+        //     ->whereHas('produk', function($query) {
+        //         $query->whereNotNull('id_penitip');
+        //     })
+        //     ->with(['produk', 'produk.penitip']) 
+        //     ->get();
 
-            $productName = $transaction->produk->nama_produk;
+        // $report = [];
 
-            if (!isset($report[$partnerId]['Partner']['Products'][$productName])) {
-                $report[$partnerId]['Partner']['Products'][$productName] = [
-                    'nama_produk' => $productName,
-                    'qty' => $transaction->jumlah_item,
-                    'harga_satuan' => $transaction->harga_satuan,
-                    'total' => $transaction->jumlah_item * $transaction->harga_satuan,
-                    'komisi' => ($transaction->jumlah_item * $transaction->harga_satuan) * 0.20,
-                    'diterima' => ($transaction->jumlah_item * $transaction->harga_satuan) * 0.80,
-                ];
-            } else {
-                $report[$partnerId]['Partner']['Products'][$productName]['qty'] += $transaction->jumlah_item;
-                $report[$partnerId]['Partner']['Products'][$productName]['total'] += $transaction->jumlah_item * $transaction->harga_satuan;
-                $report[$partnerId]['Partner']['Products'][$productName]['komisi'] += ($transaction->jumlah_item * $transaction->harga_satuan) * 0.20;
-                $report[$partnerId]['Partner']['Products'][$productName]['diterima'] += ($transaction->jumlah_item * $transaction->harga_satuan) * 0.80;
-            }
-        }
+        // foreach ($transactions as $transaction) {
+        //     $partnerId = $transaction->produk->penitip->id_penitip;
+
+        //     if (!isset($report[$partnerId])) {
+        //         $report[$partnerId] = [
+        //             'Partner' => [
+        //                 'id_penitip' => $partnerId,
+        //                 'nama_penitip' => $transaction->produk->penitip->nama_penitip,
+        //                 'Products' => []
+        //             ],
+        //         ];
+        //     }
+
+        //     $productName = $transaction->produk->nama_produk;
+
+        //     if (!isset($report[$partnerId]['Partner']['Products'][$productName])) {
+        //         $report[$partnerId]['Partner']['Products'][$productName] = [
+        //             'nama_produk' => $productName,
+        //             'qty' => $transaction->jumlah_item,
+        //             'harga_satuan' => $transaction->harga_satuan,
+        //             'total' => $transaction->jumlah_item * $transaction->harga_satuan,
+        //             'komisi' => ($transaction->jumlah_item * $transaction->harga_satuan) * 0.20,
+        //             'diterima' => ($transaction->jumlah_item * $transaction->harga_satuan) * 0.80,
+        //         ];
+        //     } else {
+        //         $report[$partnerId]['Partner']['Products'][$productName]['qty'] += $transaction->jumlah_item;
+        //         $report[$partnerId]['Partner']['Products'][$productName]['total'] += $transaction->jumlah_item * $transaction->harga_satuan;
+        //         $report[$partnerId]['Partner']['Products'][$productName]['komisi'] += ($transaction->jumlah_item * $transaction->harga_satuan) * 0.20;
+        //         $report[$partnerId]['Partner']['Products'][$productName]['diterima'] += ($transaction->jumlah_item * $transaction->harga_satuan) * 0.80;
+        //     }
+        // }
 
         return response()->json([
             'success' => true,
