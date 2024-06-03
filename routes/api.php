@@ -12,6 +12,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PenitipController;
 use App\Http\Controllers\PembelianBahanBakuController;
+use App\Http\Controllers\PenggunaanBahanBakuController;
 use App\Http\Controllers\PengeluaranLainLainController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\KeranjangController;
@@ -131,6 +132,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/pembelian-bahan-baku/add', [PembelianBahanBakuController::class, 'addPembelianBahanBaku']);
     Route::put('/pembelian-bahan-baku/edit/{id}', [PembelianBahanBakuController::class, 'editPembelianBahanBaku']);
     Route::delete('/pembelian-bahan-baku/delete/{id}', [PembelianBahanBakuController::class, 'deletePembelianBahanBaku']);
+
+    //Penggunaan bahan baku
+    Route::get('/penggunaan-bahan-baku', [PenggunaanBahanBakuController::class, 'getAllPenggunaanBahanBaku']);
+    Route::post('/penggunaan-bahan-baku/add', [PenggunaanBahanBakuController::class, 'addPenggunaanBahanBaku']);
 
     //pengeluaran lain lain
     Route::get('/pengeluaran-lain-lain', [PengeluaranLainLainController::class, 'getAllPengeluaranLainLain']);
