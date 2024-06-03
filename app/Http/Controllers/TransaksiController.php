@@ -12,6 +12,7 @@ use App\Models\Pengiriman;
 use App\Models\DetailTransaksi;
 use App\Models\MutasiSaldo;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 
 class TransaksiController extends Controller
@@ -185,15 +186,21 @@ class TransaksiController extends Controller
             if ($transaksi->jenis_pengiriman == 'Delivery') {
                 $pengiriman = Pengiriman::create([
                     'kurir' => 'Andi',
-                    'alamat_tujuan' => 'Jl. Raya Kuta No. 1',
+                    'alamat_tujuan' => $request->alamat_tujuan,
                     'id_transaksi' => $transaksi->id_transaksi
                 ]);
                 $pengiriman->save();
-            }
-            if ($pembayaran->jenis_pembayaran == 'Cash') {
-                $transaksi->status_transaksi = 'Paid';
+                if ($pembayaran->jenis_pembayaran == 'Cash') {
+                    $transaksi->status_transaksi = 'Paid';
+                } else {
+                    $transaksi->status_transaksi = 'Inputing Range';
+                }
             } else {
-                $transaksi->status_transaksi = 'Inputing Range';
+                if ($pembayaran->jenis_pembayaran == 'Cash') {
+                    $transaksi->status_transaksi = 'Paid';
+                } else {
+                    $transaksi->status_transaksi = 'Unpaid';
+                }
             }
             $transaksi->save();
 
@@ -556,6 +563,37 @@ class TransaksiController extends Controller
                 'message' => 'Transaction Successfully Updated',
                 'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman', 'customer'])]
             ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+    public function cancleTransactionLatePayment()
+    {
+        try {
+            $transaksi = Transaksi::where('status_transaksi', 'Unpaid')
+                ->whereHas('pembayaran', function ($query) {
+                    $query->wherenull('tanggal_pembayaran');
+                })
+                ->whereDate('tanggal_ambil', '=', Carbon::now()->addDays(1)->toDateString())
+                ->get();
+            foreach ($transaksi as $item) {
+                $item->status_transaksi = 'Cancelled';
+                $item->save();
+                $customer = $item->customer;
+                $customer->poin += $item->poin_digunakan;
+                $customer->save();
+            }
+            // return response()->json([
+            //     'success' => true,
+            //     'message' => 'Transaction Successfully Updated',
+            //     'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman'])]
+            // ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
