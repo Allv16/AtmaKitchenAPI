@@ -190,10 +190,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/pengembalian-dana/customer/{idCustomer}', [SaldoController::class, 'getWithdrawByIdCustomer']);
     Route::post('/confirm-withdraw/{id}', [SaldoController::class, 'confirmWithdraw']);
 
+    //Notification
+    Route::post('/notification/send/{idCustomer}', [NotificationController::class, 'sendNotification']);
+
     //Laporan
     Route::get('/laporan/ingredients-usage', [LaporanController::class, 'ingredientsUsageReport']);
     Route::get('/laporan/monthly-sales', [LaporanController::class, 'salesReport']);
-
-    //Notification
-    Route::post('/notification/send/{idCustomer}', [NotificationController::class, 'sendNotification']);
+    Route::get('/laporan/attendance-report', [LaporanController::class, 'attendanceReport']);
+    Route::get('/laporan/expenses-income-reports', [LaporanController::class, 'expensesincomeReport']);
+    Route::get('/laporan/partner-transaction-reports', [LaporanController::class, 'partnerTransactionReport']);
 });

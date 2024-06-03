@@ -28,4 +28,15 @@ class Penitip extends Model
     {
         return $this->hasMany(Produk::class, 'id_penitip', 'id_penitip');
     }
+
+    public function report($month, $year)
+    {
+        return $this->produk()
+            ->whereHas('detailTransaksi', function ($query) use ($month, $year) {
+                $query->whereHas('transaksi', function ($query) use ($month, $year) {
+                    $query->whereYear('tanggal_nota_dibuat', $year)
+                        ->whereMonth('tanggal_nota_dibuat', $month);
+                });
+            });
+    }
 }
