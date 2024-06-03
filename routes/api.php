@@ -151,6 +151,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/transaksi/completed/{id}', [TransaksiController::class, 'updateTransactionToCompleted']);
     Route::get('/transaksi-admin/ready', [TransaksiController::class, 'getTransactionReady']);
     Route::put('/transaksi-admin/after-ready/{id}', [TransaksiController::class, 'updateTransactionAfterReady']);
+    Route::get('/transaksi-admin/testonggg', [TransaksiController::class, 'cancleTransactionLatePayment']);
 
     //Transaksi MO
     Route::get('/transaksi-mo/todo', [TransaksiController::class, 'getTransactionForMOTodo']);
