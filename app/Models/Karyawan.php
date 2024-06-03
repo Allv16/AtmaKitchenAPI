@@ -25,4 +25,9 @@ class Karyawan extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function presensiKaryawan()
+    {
+        return $this->hasMany(PresensiKaryawan::class, 'id_karyawan', 'id_karyawan');
+    }
 }

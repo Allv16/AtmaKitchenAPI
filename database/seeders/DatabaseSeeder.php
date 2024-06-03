@@ -670,7 +670,7 @@ class DatabaseSeeder extends Seeder
                 'id_produk' => 6,
                 'id_bahan_baku' => 6,
             ],
-            
+
             //Lapis Surabaya
             [
                 'jumlah_bahan' => 500,
@@ -806,7 +806,7 @@ class DatabaseSeeder extends Seeder
             ],
 
             //Spikoe
-               [
+            [
                 'jumlah_bahan' => 20,
                 'id_produk' => 14,
                 'id_bahan_baku' => 3,
@@ -889,8 +889,8 @@ class DatabaseSeeder extends Seeder
                 'id_bahan_baku' => 13,
             ],
 
-             //Milk Bun
-             [
+            //Milk Bun
+            [
                 'jumlah_bahan' => 250,
                 'id_produk' => 17,
                 'id_bahan_baku' => 6,
@@ -936,8 +936,8 @@ class DatabaseSeeder extends Seeder
                 'id_bahan_baku' => 5,
             ],
 
-             //Roti Keju
-             [
+            //Roti Keju
+            [
                 'jumlah_bahan' => 250,
                 'id_produk' => 18,
                 'id_bahan_baku' => 6,
@@ -977,7 +977,7 @@ class DatabaseSeeder extends Seeder
                 'id_produk' => 18,
                 'id_bahan_baku' => 20,
             ],
-        
+
             //Choco Creamy Latte
             [
                 'jumlah_bahan' => 120,
@@ -996,8 +996,8 @@ class DatabaseSeeder extends Seeder
             ],
 
 
-             //Matcha Creamy Latte
-             [
+            //Matcha Creamy Latte
+            [
                 'jumlah_bahan' => 120,
                 'id_produk' => 20,
                 'id_bahan_baku' => 21,
@@ -1171,7 +1171,7 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i < 15; $i++) {
             $id_karyawan = DB::table('karyawan')->insertGetId([
                 'nama_karyawan' => $faker->name,
-                'gaji_karyawan' => rand(3000000, 5000000),
+                'gaji_karyawan' => rand(30000, 25000),
                 'bonus_gaji_karyawan' => rand(0, 500000),
             ]);
 

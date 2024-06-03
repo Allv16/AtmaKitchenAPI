@@ -10,7 +10,7 @@ use App\Models\PenggunaanBahanBaku;
 use App\Models\Pengiriman;
 use App\Models\Penitip;
 use App\Models\Transaksi;
-use App\Models\DetailTransaksi;
+use App\Models\PresensiKaryawan;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -71,13 +71,38 @@ class LaporanController extends Controller
     public function attendanceReport(Request $request)
     {
         $year = $request->query('year');
+        $month = $request->query('month');
 
-        $attendanceReport = [];
+        $countDays = Carbon::createFromDate($year, $month)->daysInMonth;
+
+        $presensi = Karyawan::with(['presensiKaryawan' => function ($query) use ($year, $month) {
+            $query->whereYear('tanggal_absen', $year)
+                ->whereMonth('tanggal_absen', $month);
+        }])->get();
+
+        $presensi = $presensi->map(function ($karyawan) use ($countDays) {
+            $presensiKaryawan = $karyawan->presensiKaryawan;
+            $totalAbsent = $presensiKaryawan->count();
+            $totalPresent = $countDays - $totalAbsent;
+            $bonus = 0;
+            if ($totalAbsent < 5) {
+                $bonus = $karyawan->bonus_gaji_karyawan;
+            }
+
+            return [
+                'id_karyawan' => $karyawan->id_karyawan,
+                'nama_karyawan' => $karyawan->nama_karyawan,
+                'total_present' => $totalPresent,
+                'total_absent' => $totalAbsent,
+                'honor' => $karyawan->gaji_karyawan * $totalPresent,
+                'bonus' => $bonus,
+            ];
+        });
 
         return response()->json([
             'success' => true,
             'message' => 'Successfully retrieved attendance report',
-            'data' => $attendanceReport
+            'data' => $presensi
         ]);
     }
 
