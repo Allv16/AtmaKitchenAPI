@@ -148,11 +148,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/transaksi/ready/{id}', [TransaksiController::class, 'updateTransactionToReady']);
     Route::get('/transaksi-admin/ready', [TransaksiController::class, 'getTransactionReady']);
     Route::put('/transaksi-admin/after-ready/{id}', [TransaksiController::class, 'updateTransactionAfterReady']);
+    
 
     //Transaksi MO
     Route::get('/transaksi-mo/todo', [TransaksiController::class, 'getTransactionForMOTodo']);
+    Route::get('/transaksi-mo/reject', [TransaksiController::class, 'getTransactionRejectedByMO']);
     Route::put('/transaksi-mo/reject/{idTransaction}', [TransaksiController::class, 'rejectTransaction']);
     Route::put('/transaksi-mo/accept/{idTransaction}', [TransaksiController::class, 'processTransaction']);
+    Route::put('/transaksi-mo/on-process/{idTransaction}', [TransaksiController::class, 'onProcessTransaction']);
+    Route::get('/transaksi-mo/on-process-today', [TransaksiController::class, 'getTransactionOnProcessToday']);
 
     //Keranjang
     Route::get('/keranjang', [KeranjangController::class, 'getKeranjang']);
