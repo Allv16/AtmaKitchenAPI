@@ -354,6 +354,29 @@ class TransaksiController extends Controller
         }
     }
 
+    public function getTransactionOnProcessToday()
+    {
+        $dateNow = date('Y-m-d');
+        $dateTomorrow = Carbon::now()->addDay()->format('Y-m-d');
+        try {
+            $transaksi = Transaksi::where('status_transaksi', 'Confirmed' )
+                ->whereDate('tanggal_ambil', $dateTomorrow)
+                ->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Retrieved',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'customer', 'pengiriman'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrive transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
     public function updateTransactionToReady($id)
     {
         try {
@@ -403,6 +426,26 @@ class TransaksiController extends Controller
         }
     }
 
+    public function getTransactionRejectedByMO()
+    {
+        try {
+            $transaksi = Transaksi::where('status_transaksi', 'Rejected')
+                ->get();
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Retrieved',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'customer', 'pengiriman'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrive transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
     public function processTransaction($idTransaction)
     {
         try {
@@ -415,6 +458,40 @@ class TransaksiController extends Controller
                 ], 404);
             }
             $transaksi->status_transaksi = 'Confirmed';
+            $transaksi->save();
+
+            //Add Customer Point
+            $customer = $transaksi->customer;
+            $customer->poin = $customer->poin += $transaksi->poin_diperoleh;
+            $customer->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Transaction Successfully Updated',
+                'data' => ['transaksi' => $transaksi->load(['detailTransaksi.produk', 'pembayaran', 'pengiriman', 'customer'])]
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update transaction',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+    public function onProcessTransaction($idTransaction)
+    {
+        try {
+            $transaksi = Transaksi::find($idTransaction);
+            if (!$transaksi) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Transaction Not Found',
+                    'data' => null
+                ], 404);
+            }
+            $transaksi->status_transaksi = 'On Process';
             $transaksi->save();
 
             //Add Customer Point
