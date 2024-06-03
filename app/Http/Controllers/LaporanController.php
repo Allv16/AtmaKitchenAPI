@@ -8,7 +8,9 @@ use App\Models\PengeluaranLainLain;
 use Illuminate\Http\Request;
 use App\Models\PenggunaanBahanBaku;
 use App\Models\Pengiriman;
+use App\Models\Penitip;
 use App\Models\Transaksi;
+use App\Models\DetailTransaksi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -89,14 +91,6 @@ class LaporanController extends Controller
             ->where('status_transaksi', 'Completed')
             ->get()->load('pembayaran', 'pengiriman');
 
-        if ($transactions->isEmpty()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'No transactions found',
-                'data' => ['report' => []],
-            ]);
-        }
-
         $pembayaran = $transactions->map(function ($transaction) {
             return $transaction->pembayaran;
         });
@@ -112,7 +106,7 @@ class LaporanController extends Controller
 
         $totalSales = $transactions->sum('total');
         $totalDelivery = $delivery->sum('biaya_pengiriman');
-        $totalSales = $totalSales - $totalDelivery; // total sales minus delivery fee
+        $totalSales = $totalSales - $totalDelivery; 
         $totalTips = $pembayaran->sum('tip');
 
         $report =
@@ -132,20 +126,82 @@ class LaporanController extends Controller
                     'income' => $totalDelivery,
                     'expenses' => 0,
                 ],
+                
             ];
 
-        foreach ($otherExpenses as $expense) {
-            $report[] = [
-                'type' => $expense->nama_pengeluaran,
-                'income' => 0,
-                'expenses' => $expense->total_pengeluaran,
-            ];
+        if (!$otherExpenses->isEmpty()) {
+            foreach ($otherExpenses as $expense) {
+                $report[] = [
+                    'type' => $expense->nama_pengeluaran,
+                    'income' => 0,
+                    'expenses' => $expense->total_pengeluaran,
+                ];
+            }
         }
 
         return response()->json([
             'success' => true,
             'message' => 'Successfully retrieved expenses and income report',
-            'data' => ['report' => $report],
+            'data' => [
+                'report' => $report,
+            ],
+        ]);
+    }
+
+    public function partnerTransactionReport(Request $request){
+        $year = $request->input('year');
+        $month = $request->input('month');
+
+        $transactions = DetailTransaksi::whereHas('transaksi', function($query) use ($year, $month) {
+                $query->whereYear('tanggal_nota_dibuat', $year)
+                    ->whereMonth('tanggal_nota_dibuat', $month);
+            })
+            ->whereHas('produk', function($query) {
+                $query->whereNotNull('id_penitip');
+            })
+            ->with(['produk', 'produk.penitip']) 
+            ->get();
+
+        $report = [];
+
+        foreach ($transactions as $transaction) {
+            $partnerId = $transaction->produk->penitip->id_penitip;
+
+            if (!isset($report[$partnerId])) {
+                $report[$partnerId] = [
+                    'Partner' => [
+                        'id_penitip' => $partnerId,
+                        'nama_penitip' => $transaction->produk->penitip->nama_penitip,
+                        'Products' => []
+                    ],
+                ];
+            }
+
+            $productName = $transaction->produk->nama_produk;
+
+            if (!isset($report[$partnerId]['Partner']['Products'][$productName])) {
+                $report[$partnerId]['Partner']['Products'][$productName] = [
+                    'nama_produk' => $productName,
+                    'qty' => $transaction->jumlah_item,
+                    'harga_satuan' => $transaction->harga_satuan,
+                    'total' => $transaction->jumlah_item * $transaction->harga_satuan,
+                    'komisi' => ($transaction->jumlah_item * $transaction->harga_satuan) * 0.20,
+                    'diterima' => ($transaction->jumlah_item * $transaction->harga_satuan) * 0.80,
+                ];
+            } else {
+                $report[$partnerId]['Partner']['Products'][$productName]['qty'] += $transaction->jumlah_item;
+                $report[$partnerId]['Partner']['Products'][$productName]['total'] += $transaction->jumlah_item * $transaction->harga_satuan;
+                $report[$partnerId]['Partner']['Products'][$productName]['komisi'] += ($transaction->jumlah_item * $transaction->harga_satuan) * 0.20;
+                $report[$partnerId]['Partner']['Products'][$productName]['diterima'] += ($transaction->jumlah_item * $transaction->harga_satuan) * 0.80;
+            }
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Monthly transaction report generated successfully',
+            'data' => [
+                'Report' => $report,
+            ],
         ]);
     }
 }
