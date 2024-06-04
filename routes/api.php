@@ -201,4 +201,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/laporan/attendance-report', [LaporanController::class, 'attendanceReport']);
     Route::get('/laporan/expenses-income-reports', [LaporanController::class, 'expensesincomeReport']);
     Route::get('/laporan/partner-transaction-reports', [LaporanController::class, 'partnerTransactionReport']);
+    Route::get('/laporan/monthly-sales-product', [LaporanController::class, 'monthlySalesProductReport']);
+
+    //Notification
+    Route::post('/notification/send/{idCustomer}', [NotificationController::class, 'sendNotification']);
 });

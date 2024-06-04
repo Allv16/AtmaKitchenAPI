@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\PenggunaanBahanBaku;
 use App\Models\Penitip;
 use App\Models\Transaksi;
+use App\Models\DetailTransaksi;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -249,5 +250,47 @@ class LaporanController extends Controller
                 'Report' => $report,
             ],
         ]);
+    }
+    public function monthlySalesProductReport(Request $request)
+    {
+        try {
+            $month = $request->query('month');
+            $year = $request->query('year');
+
+            $products = DetailTransaksi::with('produk')
+                ->whereHas('transaksi', function ($query) use ($month, $year) {
+                    $query->where('status_transaksi', 'Completed')
+                        ->whereMonth('tanggal_nota_dibuat', $month)
+                        ->whereYear('tanggal_nota_dibuat', $year);
+                })
+                ->get()
+                ->map(function ($products) {
+                    $qty = $products->jumlah_item;
+                    $price = $products->harga_satuan;
+                    $total = $qty * $price;
+                    return [
+                        'product_name' => $products->produk->nama_produk,
+                        'qty' => $qty,
+                        'price' => $price,
+                        'total' => $total
+                    ];
+                });
+
+            $grandTotal = $products->sum('total');
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Successfully retrieved product sales report',
+                'data' => $products,
+                'grand_total' => $grandTotal
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to retrieve sales data',
+                'error' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
     }
 }
