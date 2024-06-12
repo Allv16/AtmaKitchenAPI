@@ -671,6 +671,38 @@ class DatabaseSeeder extends Seeder
                 'id_bahan_baku' => 6,
             ],
 
+            //Lapis Legit 1/2
+            [
+                'jumlah_bahan' => 250,
+                'id_produk' => 7,
+                'id_bahan_baku' => 1,
+            ],
+            [
+                'jumlah_bahan' => 25,
+                'id_produk' => 7,
+                'id_bahan_baku' => 2,
+            ],
+            [
+                'jumlah_bahan' => 25,
+                'id_produk' => 7,
+                'id_bahan_baku' => 3,
+            ],
+            [
+                'jumlah_bahan' => 150,
+                'id_produk' => 7,
+                'id_bahan_baku' => 4,
+            ],
+            [
+                'jumlah_bahan' => 50,
+                'id_produk' => 7,
+                'id_bahan_baku' => 5,
+            ],
+            [
+                'jumlah_bahan' => 10,
+                'id_produk' => 7,
+                'id_bahan_baku' => 6,
+            ],
+
             //Lapis Surabaya
             [
                 'jumlah_bahan' => 500,
@@ -717,6 +749,54 @@ class DatabaseSeeder extends Seeder
                 'id_produk' => 8,
                 'id_bahan_baku' => 9,
             ],
+
+            //Lapis Surabaya 1/2
+            [
+                'jumlah_bahan' => 250,
+                'id_produk' => 9,
+                'id_bahan_baku' => 1,
+            ],
+            [
+                'jumlah_bahan' => 25,
+                'id_produk' => 9,
+                'id_bahan_baku' => 2,
+            ],
+            [
+                'jumlah_bahan' => 20,
+                'id_produk' => 9,
+                'id_bahan_baku' => 3,
+            ],
+            [
+                'jumlah_bahan' => 150,
+                'id_produk' => 9,
+                'id_bahan_baku' => 4,
+            ],
+            [
+                'jumlah_bahan' => 50,
+                'id_produk' => 9,
+                'id_bahan_baku' => 6,
+            ],
+            [
+                'jumlah_bahan' => 50,
+                'id_produk' => 9,
+                'id_bahan_baku' => 5,
+            ],
+            [
+                'jumlah_bahan' => 5,
+                'id_produk' => 9,
+                'id_bahan_baku' => 7,
+            ],
+            [
+                'jumlah_bahan' => 12.5,
+                'id_produk' => 9,
+                'id_bahan_baku' => 8,
+            ],
+            [
+                'jumlah_bahan' => 50,
+                'id_produk' => 9,
+                'id_bahan_baku' => 9,
+            ],
+
             //Brownies
             [
                 'jumlah_bahan' => 250,
@@ -753,6 +833,44 @@ class DatabaseSeeder extends Seeder
                 'id_produk' => 10,
                 'id_bahan_baku' => 8,
             ],
+
+            //Brownies 1/2
+            [
+                'jumlah_bahan' => 125,
+                'id_produk' => 11,
+                'id_bahan_baku' => 22,
+            ],
+            [
+                'jumlah_bahan' => 50,
+                'id_produk' => 11,
+                'id_bahan_baku' => 1,
+            ],
+            [
+                'jumlah_bahan' => 25,
+                'id_produk' => 11,
+                'id_bahan_baku' => 10,
+            ],
+            [
+                'jumlah_bahan' => 3,
+                'id_produk' => 11,
+                'id_bahan_baku' => 3,
+            ],
+            [
+                'jumlah_bahan' => 100,
+                'id_produk' => 11,
+                'id_bahan_baku' => 4,
+            ],
+            [
+                'jumlah_bahan' => 75,
+                'id_produk' => 11,
+                'id_bahan_baku' => 6,
+            ],
+            [
+                'jumlah_bahan' => 30,
+                'id_produk' => 11,
+                'id_bahan_baku' => 8,
+            ],
+
             //Mandarin
             [
                 'jumlah_bahan' => 300,
@@ -805,6 +923,58 @@ class DatabaseSeeder extends Seeder
                 'id_bahan_baku' => 9,
             ],
 
+            //Mandarin 1/2
+            [
+                'jumlah_bahan' => 150,
+                'id_produk' => 13,
+                'id_bahan_baku' => 1,
+            ],
+            [
+                'jumlah_bahan' => 15,
+                'id_produk' => 13,
+                'id_bahan_baku' => 2,
+            ],
+            [
+                'jumlah_bahan' => 15,
+                'id_produk' => 13,
+                'id_bahan_baku' => 3,
+            ],
+            [
+                'jumlah_bahan' => 10,
+                'id_produk' => 13,
+                'id_bahan_baku' => 4,
+            ],
+            [
+                'jumlah_bahan' => 40,
+                'id_produk' => 13,
+                'id_bahan_baku' => 6,
+            ],
+            [
+                'jumlah_bahan' => 40,
+                'id_produk' => 13,
+                'id_bahan_baku' => 5,
+            ],
+            [
+                'jumlah_bahan' => 2.5,
+                'id_produk' => 13,
+                'id_bahan_baku' => 7,
+            ],
+            [
+                'jumlah_bahan' => 12.5,
+                'id_produk' => 13,
+                'id_bahan_baku' => 8,
+            ],
+            [
+                'jumlah_bahan' => 25,
+                'id_produk' => 13,
+                'id_bahan_baku' => 9,
+            ],
+            [
+                'jumlah_bahan' => 25,
+                'id_produk' => 13,
+                'id_bahan_baku' => 9,
+            ],
+
             //Spikoe
             [
                 'jumlah_bahan' => 20,
@@ -844,6 +1014,48 @@ class DatabaseSeeder extends Seeder
             [
                 'jumlah_bahan' => 100,
                 'id_produk' => 14,
+                'id_bahan_baku' => 13,
+            ],
+
+            //Spikoe 1/2
+            [
+                'jumlah_bahan' => 10,
+                'id_produk' => 15,
+                'id_bahan_baku' => 3,
+            ],
+            [
+                'jumlah_bahan' => 100,
+                'id_produk' => 15,
+                'id_bahan_baku' => 4,
+            ],
+            [
+                'jumlah_bahan' => 45,
+                'id_produk' => 15,
+                'id_bahan_baku' => 6,
+            ],
+            [
+                'jumlah_bahan' => 10,
+                'id_produk' => 15,
+                'id_bahan_baku' => 11,
+            ],
+            [
+                'jumlah_bahan' => 5,
+                'id_produk' => 15,
+                'id_bahan_baku' => 5,
+            ],
+            [
+                'jumlah_bahan' => 2.5,
+                'id_produk' => 15,
+                'id_bahan_baku' => 12,
+            ],
+            [
+                'jumlah_bahan' => 100,
+                'id_produk' => 15,
+                'id_bahan_baku' => 1,
+            ],
+            [
+                'jumlah_bahan' => 50,
+                'id_produk' => 15,
                 'id_bahan_baku' => 13,
             ],
 
@@ -995,6 +1207,23 @@ class DatabaseSeeder extends Seeder
                 'id_bahan_baku' => 16,
             ],
 
+
+            //Matcha Creamy Latte
+            [
+                'jumlah_bahan' => 120,
+                'id_produk' => 20,
+                'id_bahan_baku' => 21,
+            ],
+            [
+                'jumlah_bahan' => 80,
+                'id_produk' => 20,
+                'id_bahan_baku' => 2,
+            ],
+            [
+                'jumlah_bahan' => 800,
+                'id_produk' => 20,
+                'id_bahan_baku' => 16,
+            ],
 
             //Matcha Creamy Latte
             [

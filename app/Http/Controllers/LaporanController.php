@@ -52,7 +52,7 @@ class LaporanController extends Controller
                 ->get();
 
             $transactionCount = $transactions->count();
-            $totalSales = $transactions->sum('pembayaran.total_pembayaran');
+            $totalSales = $transactions->sum('total');
 
             $salesReport[] = [
                 'month' => $month,

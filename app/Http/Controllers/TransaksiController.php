@@ -286,11 +286,8 @@ class TransaksiController extends Controller
             $pengiriman->biaya_pengiriman = $request->biaya_pengiriman;
             $pengiriman->save();
 
-            if ($transaksi->pembayaran->jenis_pembayaran == 'Cash') {
-                $transaksi->status_transaksi = 'Unpaid';
-            } else {
-                $transaksi->status_transaksi = 'Paid';
-            }
+            $transaksi->status_transaksi = 'Unpaid';
+
             $transaksi->total += $request->biaya_pengiriman;
             $transaksi->save();
 
@@ -661,7 +658,7 @@ class TransaksiController extends Controller
                 ->whereDate('tanggal_ambil', '=', Carbon::now()->addDays(1)->toDateString())
                 ->get();
             foreach ($transaksi as $item) {
-                $item->status_transaksi = 'Cancelled';
+                $item->status_transaksi = 'Rejected';
                 $item->save();
                 $customer = $item->customer;
                 $customer->poin += $item->poin_digunakan;
@@ -680,7 +677,7 @@ class TransaksiController extends Controller
     public function getTransactionCancelled()
     {
         try {
-            $transaksi = Transaksi::where('status_transaksi', 'Cancelled')
+            $transaksi = Transaksi::where('status_transaksi', 'Rejected')
                 ->get();
             return response()->json([
                 'success' => true,

@@ -45,14 +45,6 @@ class SaldoController extends Controller
             ], 400);
         }
 
-        $mutasiSaldo = MutasiSaldo::create([
-            'id_customer' => $idCustomer,
-            'debit' => 0,
-            'kredit' => $jumlahPengembalian,
-            'saldo' => $saldo->saldo - $jumlahPengembalian,
-            'tanggal_mutasi' => date('Y-m-d H:i:s')
-        ]);
-
         $withdrawRequest = PengembalianDana::create([
             'id_customer' => $idCustomer,
             'jumlah_pengembalian' => $jumlahPengembalian,
