@@ -145,7 +145,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/pengeluaran-lain-lain/delete/{id}', [PengeluaranLainLainController::class, 'deletePengeluaranLainLain']);
 
     //Transaksi
-    Route::get('/transaksi/{id}', [TransaksiController::class, 'getAllTransactionByIdCustomer']);
+    Route::get('/transaksi/customer/{id}', [TransaksiController::class, 'getAllTransactionByIdCustomer']);
     Route::get('/transaksi/id/{id}', [TransaksiController::class, 'getTransactionById']);
     Route::get('/transaksi/history/{id}', [TransaksiController::class, 'getHistoryTransactionByIdCustomer']);
     Route::get('/transaksi-cancelled', [TransaksiController::class, 'getTransactionCancelled']);
