@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'manageroperational@atmabakery.com',
                 'password' => bcrypt('12345'),
                 'tanggal_diverifikasi' => now(),
-                'username' => 'MO',
+                'username' => 'MOO',
                 'verif_key' => '12345',
                 'url_foto' => null,
             ]
@@ -128,6 +128,15 @@ class DatabaseSeeder extends Seeder
                 'username' => 'dendy',
                 'verif_key' => '12345',
                 'url_foto' => null,
+            ],
+            [
+                'id_role' => 4,
+                'email' => 'john@gmail.com',
+                'password' => bcrypt('12345'),
+                'tanggal_diverifikasi' => now(),
+                'username' => 'John',
+                'verif_key' => '12345',
+                'url_foto' => null,
             ]
         ]);
 
@@ -194,6 +203,15 @@ class DatabaseSeeder extends Seeder
                 'no_telp' => '081234567890',
                 'poin' => 0,
                 'tanggal_lahir' => '2003-03-01',
+            ],
+            [
+
+                'id_user' => 11,
+                'jenis_kelamin' => 'Men',
+                'nama_customer' => 'John',
+                'no_telp' => '081234567890',
+                'poin' => 560,
+                'tanggal_lahir' => '2003-06-13',
             ],
         ]);
 
@@ -285,7 +303,7 @@ class DatabaseSeeder extends Seeder
                 'harga' => 850_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
-                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'deskripsi' => 'Kue lapis lembut yang rasa istimewa denga buah plum kering dan rempah tradisional khas Indonesia',
                 'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825654.png',
                 'id_penitip' => null,
             ],
@@ -294,7 +312,7 @@ class DatabaseSeeder extends Seeder
                 'harga' => 450_000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
-                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'deskripsi' => 'Kue lapis lembut yang rasa istimewa denga buah plum kering dan rempah tradisional khas Indonesia',
                 'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825654.png',
                 'id_penitip' => null,
             ],
@@ -303,7 +321,7 @@ class DatabaseSeeder extends Seeder
                 'harga' => 550_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
-                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'deskripsi' => 'Kue lapis yang lembut dengan lapisan bolu cokelat dan vanilla serta selai stroberi yang segar dibaigan dalam',
                 'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716826109.png',
                 'id_penitip' => null,
             ],
@@ -312,7 +330,7 @@ class DatabaseSeeder extends Seeder
                 'harga' => 300_000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
-                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'deskripsi' => 'Kue lapis yang lembut dengan lapisan bolu cokelat dan vanilla serta selai stroberi yang segar dibaigan dalam',
                 'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716826109.png',
                 'id_penitip' => null,
             ],
@@ -321,7 +339,7 @@ class DatabaseSeeder extends Seeder
                 'harga' => 250_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
-                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'deskripsi' => 'Tekstur yang lembut dan rasa cokelat yang kaya, memberikan sensasi rasa yang tak terlupakan',
                 'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825309.png',
                 'id_penitip' => null,
             ],
@@ -330,7 +348,7 @@ class DatabaseSeeder extends Seeder
                 'harga' => 150_000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
-                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'deskripsi' => 'tekstur yang lembut dan rasa cokelat yang kaya, memberikan sensasi rasa yang tak terlupakan',
                 'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716825309.png',
                 'id_penitip' => null,
             ],
@@ -339,7 +357,7 @@ class DatabaseSeeder extends Seeder
                 'harga' => 450_000,
                 'limit_produksi' => 10,
                 'jenis_produk' => 'Cake',
-                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'deskripsi' => 'Kue Mandarin kami adalah mahakarya kuliner yang menggabungkan rasa jeruk mandarin yang segar dengan tekstur kue yang lembut dan moist',
                 'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716829112.png',
                 'id_penitip' => null,
             ],
@@ -348,7 +366,7 @@ class DatabaseSeeder extends Seeder
                 'harga' => 250_000,
                 'limit_produksi' => 20,
                 'jenis_produk' => 'Cake',
-                'deskripsi' => 'Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk Deskripsi Produk',
+                'deskripsi' => 'Kue Mandarin kami adalah mahakarya kuliner yang menggabungkan rasa jeruk mandarin yang segar dengan tekstur kue yang lembut dan moist',
                 'foto' => 'https://atmabakerycontainer.blob.core.windows.net/images/products/1716829112.png',
                 'id_penitip' => null,
             ],
@@ -1420,6 +1438,18 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        DB::table('alamat_customers')->insert([
+            [
+                'label_alamat' => 'Home',
+                'alamat' => 'Jl. Babarsari No. 43, Yogyakarta',
+                'id_customer' => 8,
+            ],
+            [
+                'label_alamat' => 'Office',
+                'alamat' => 'Jl. Kaliurang No. 43, Yogyakarta',
+                'id_customer' => 8,
+            ],
+        ]);
 
         //transaksi gagal 1
         DB::table('pembayaran')->insert([
@@ -1442,8 +1472,7 @@ class DatabaseSeeder extends Seeder
                 'tanggal_ditolak' => '2024-02-03',
                 'total' => 850000,
                 'jenis_pengiriman' => 'Ambil Sendiri',
-                'status_transaksi' => 'Ditolak',
-
+                'status_transaksi' => 'Rejected',
                 'id_customer' => 1,
                 'id_pembayaran' => 1,
             ]
@@ -1488,7 +1517,6 @@ class DatabaseSeeder extends Seeder
                 'tanggal_pembayaran_valid' => '2024-02-10',
                 'total_pembayaran' => 850000,
                 'tip' => 0,
-
                 'id_customer' => 1,
             ]
         ]);
@@ -1499,7 +1527,7 @@ class DatabaseSeeder extends Seeder
                 'tanggal_ditolak' => '2024-02-12',
                 'total' => 850000,
                 'jenis_pengiriman' => 'Ambil Sendiri',
-                'status_transaksi' => 'Ditolak',
+                'status_transaksi' => 'Cancelled',
 
                 'id_customer' => 1,
                 'id_pembayaran' => 2,
@@ -1555,8 +1583,8 @@ class DatabaseSeeder extends Seeder
                 'tanggal_nota_dibuat' => '2024-02-12',
                 'tanggal_ditolak' => '2024-02-14',
                 'total' => 850000,
-                'jenis_pengiriman' => 'Ambil Sendiri',
-                'status_transaksi' => 'Ditolak',
+                'jenis_pengiriman' => 'Pickup',
+                'status_transaksi' => 'Cancelled',
 
                 'id_customer' => 3,
                 'id_pembayaran' => 3,
@@ -1612,8 +1640,8 @@ class DatabaseSeeder extends Seeder
                 'tanggal_nota_dibuat' => '2024-03-01',
                 'tanggal_ditolak' => '2024-03-03',
                 'total' => 850000,
-                'jenis_pengiriman' => 'Ambil Sendiri',
-                'status_transaksi' => 'Ditolak',
+                'jenis_pengiriman' => 'Pickup',
+                'status_transaksi' => 'Cancelled',
 
                 'id_customer' => 2,
                 'id_pembayaran' => 4,
@@ -1669,8 +1697,8 @@ class DatabaseSeeder extends Seeder
                 'tanggal_nota_dibuat' => '2024-03-02',
                 'tanggal_ditolak' => '2024-03-04',
                 'total' => 850000,
-                'jenis_pengiriman' => 'Ambil Sendiri',
-                'status_transaksi' => 'Ditolak',
+                'jenis_pengiriman' => 'Pickup',
+                'status_transaksi' => 'Rejected',
 
                 'id_customer' => 5,
                 'id_pembayaran' => 5,
@@ -1737,8 +1765,8 @@ class DatabaseSeeder extends Seeder
                     'tanggal_diambil' => '2024-02-15',
                     'tanggal_selesai' => '2024-02-16',
                     'total' => 1110000,
-                    'jenis_pengiriman' => 'Ambil Sendiri',
-                    'status_transaksi' => 'Selesai',
+                    'jenis_pengiriman' => 'Pickup',
+                    'status_transaksi' => 'Completed',
 
                     'id_customer' => 3,
                     'id_pembayaran' => 6,
@@ -1753,8 +1781,8 @@ class DatabaseSeeder extends Seeder
                     'tanggal_diambil' => '2024-02-17',
                     'tanggal_selesai' => '2024-02-17',
                     'total' => 500000,
-                    'jenis_pengiriman' => 'Dikirim',
-                    'status_transaksi' => 'Selesai',
+                    'jenis_pengiriman' => 'Delivery',
+                    'status_transaksi' => 'Completed',
 
                     'id_customer' => 6,
                     'id_pembayaran' => 7,
@@ -1852,97 +1880,97 @@ class DatabaseSeeder extends Seeder
         DB::table('transaksi')->insert(
             [
                 [
-                    'id_transaksi' => '24.03.003',
-                    'tanggal_nota_dibuat' => '2024-03-05',
-                    'tanggal_ambil' => '2024-03-10',
-                    'tanggal_diterima' => '2024-03-06',
-                    'tanggal_diproses' => '2024-03-09',
-                    'tanggal_siap' => '2024-03-10',
-                    'tanggal_diambil' => '2024-03-10',
-                    'tanggal_selesai' => '2024-03-10',
+                    'id_transaksi' => '24.06.001',
+                    'tanggal_nota_dibuat' => '2024-06-14',
+                    'tanggal_ambil' => '2024-06-19',
+                    'tanggal_diterima' => null,
+                    'tanggal_diproses' => null,
+                    'tanggal_siap' => null,
+                    'tanggal_diambil' => null,
+                    'tanggal_selesai' => null,
                     'total' => 650000,
-                    'jenis_pengiriman' => 'Dikirim',
-                    'status_transaksi' => 'Selesai',
+                    'jenis_pengiriman' => 'Delivery',
+                    'status_transaksi' => 'Inputing Range',
 
                     'id_customer' => 7,
                     'id_pembayaran' => 8,
                 ],
                 [
-                    'id_transaksi' => '24.03.004',
-                    'tanggal_nota_dibuat' => '2024-03-10',
-                    'tanggal_ambil' => '2024-03-12',
-                    'tanggal_diterima' => '2024-03-11',
-                    'tanggal_diproses' => '2024-03-11',
-                    'tanggal_siap' => '2024-03-11',
-                    'tanggal_diambil' => '2024-03-12',
-                    'tanggal_selesai' => '2024-03-12',
+                    'id_transaksi' => '24.06.002',
+                    'tanggal_nota_dibuat' => '2024-06-14',
+                    'tanggal_ambil' => '2024-06-16',
+                    'tanggal_diterima' => null,
+                    'tanggal_diproses' => null,
+                    'tanggal_siap' => null,
+                    'tanggal_diambil' => null,
+                    'tanggal_selesai' => null,
                     'total' => 500000,
-                    'jenis_pengiriman' => 'Dikirim',
-                    'status_transaksi' => 'Selesai',
+                    'jenis_pengiriman' => 'Delivery',
+                    'status_transaksi' => 'Paid',
 
                     'id_customer' => 3,
                     'id_pembayaran' => 9,
                 ],
                 [
-                    'id_transaksi' => '24.03.005',
-                    'tanggal_nota_dibuat' => '2024-03-14',
-                    'tanggal_ambil' => '2024-03-17',
-                    'tanggal_diterima' => '2024-03-15',
-                    'tanggal_diproses' => '2024-03-16',
-                    'tanggal_siap' => '2024-03-17',
-                    'tanggal_diambil' => '2024-03-17',
-                    'tanggal_selesai' => '2024-03-19',
+                    'id_transaksi' => '24.06.003',
+                    'tanggal_nota_dibuat' => '2024-06-14',
+                    'tanggal_ambil' => '2024-06-17',
+                    'tanggal_diterima' => null,
+                    'tanggal_diproses' => null,
+                    'tanggal_siap' => null,
+                    'tanggal_diambil' => null,
+                    'tanggal_selesai' => null,
                     'total' => 3_595_000,
-                    'jenis_pengiriman' => 'Dikirim',
-                    'status_transaksi' => 'Selesai',
+                    'jenis_pengiriman' => 'Delivery',
+                    'status_transaksi' => 'Completed',
 
                     'id_customer' => 4,
                     'id_pembayaran' => 10,
                 ],
                 [
-                    'id_transaksi' => '24.03.006',
-                    'tanggal_nota_dibuat' => '2024-03-14',
-                    'tanggal_ambil' => '2024-03-17',
-                    'tanggal_diterima' => '2024-03-15',
-                    'tanggal_diproses' => '2024-03-16',
-                    'tanggal_siap' => '2024-03-17',
-                    'tanggal_diambil' => '2024-03-17',
-                    'tanggal_selesai' => '2024-03-17',
+                    'id_transaksi' => '24.06.004',
+                    'tanggal_nota_dibuat' => '2024-06-07',
+                    'tanggal_ambil' => '2024-06-10',
+                    'tanggal_diterima' => '2024-06-07',
+                    'tanggal_diproses' => '2024-06-09',
+                    'tanggal_siap' => '2024-06-10',
+                    'tanggal_diambil' => '2024-06-10',
+                    'tanggal_selesai' => '2024-06-10',
                     'total' => 120_000,
-                    'jenis_pengiriman' => 'Dikirim',
-                    'status_transaksi' => 'Selesai',
+                    'jenis_pengiriman' => 'Delivery',
+                    'status_transaksi' => 'Completed',
 
                     'id_customer' => 5,
                     'id_pembayaran' => 11,
                 ],
                 [
-                    'id_transaksi' => '24.03.007',
-                    'tanggal_nota_dibuat' => '2024-03-20',
-                    'tanggal_ambil' => '2024-03-25',
-                    'tanggal_diterima' => '2024-03-21',
-                    'tanggal_diproses' => '2024-03-24',
-                    'tanggal_siap' => '2024-03-25',
-                    'tanggal_diambil' => '2024-03-25',
-                    'tanggal_selesai' => '2024-03-25',
+                    'id_transaksi' => '24.06.005',
+                    'tanggal_nota_dibuat' => '2024-06-08',
+                    'tanggal_ambil' => '2024-06-12',
+                    'tanggal_diterima' => '2024-06-08',
+                    'tanggal_diproses' => '2024-06-11',
+                    'tanggal_siap' => '2024-06-11',
+                    'tanggal_diambil' => '2024-06-12',
+                    'tanggal_selesai' => '2024-06-12',
                     'total' => 175_000,
-                    'jenis_pengiriman' => 'Dikirim',
-                    'status_transaksi' => 'Selesai',
+                    'jenis_pengiriman' => 'Delivery',
+                    'status_transaksi' => 'Completed',
 
                     'id_customer' => 6,
                     'id_pembayaran' => 12,
                 ],
                 [
-                    'id_transaksi' => '24.03.008',
-                    'tanggal_nota_dibuat' => '2024-03-24',
-                    'tanggal_ambil' => '2024-03-28',
-                    'tanggal_diterima' => '2024-03-25',
-                    'tanggal_diproses' => null,
+                    'id_transaksi' => '24.06.006',
+                    'tanggal_nota_dibuat' => '2024-03-13',
+                    'tanggal_ambil' => '2024-03-15',
+                    'tanggal_diterima' => '2024-03-15',
+                    'tanggal_diproses' => '2024-03-14',
                     'tanggal_siap' => null,
                     'tanggal_diambil' => null,
                     'tanggal_selesai' => null,
                     'total' => 1000000,
-                    'jenis_pengiriman' => 'Dikirim',
-                    'status_transaksi' => 'Di Proses',
+                    'jenis_pengiriman' => 'Delivery',
+                    'status_transaksi' => 'On Process',
 
                     'id_customer' => 2,
                     'id_pembayaran' => 13,
@@ -1953,67 +1981,67 @@ class DatabaseSeeder extends Seeder
             [
                 'jumlah_item' => 1,
                 'harga_satuan' => 650000,
-                'id_transaksi' => '24.03.003',
+                'id_transaksi' => '24.06.001',
                 'id_produk' => 991
             ],
             [
                 'jumlah_item' => 1,
                 'harga_satuan' => 250_000,
-                'id_transaksi' => '24.03.004',
+                'id_transaksi' => '24.06.002',
                 'id_produk' => 2
             ],
             [
                 'jumlah_item' => 1,
                 'harga_satuan' => 300_000,
-                'id_transaksi' => '24.03.004',
+                'id_transaksi' => '24.06.002',
                 'id_produk' => 9
             ],
             [
                 'jumlah_item' => 2,
                 'harga_satuan' => 75_000,
-                'id_transaksi' => '24.03.005',
+                'id_transaksi' => '24.06.003',
                 'id_produk' => 1
             ],
             [
                 'jumlah_item' => 4,
                 'harga_satuan' => 45000,
-                'id_transaksi' => '24.03.005',
+                'id_transaksi' => '24.06.003',
                 'id_produk' => 5
             ],
             [
                 'jumlah_item' => 1,
                 'harga_satuan' => 150000,
-                'id_transaksi' => '24.03.005',
+                'id_transaksi' => '24.06.003',
                 'id_produk' => 11
             ],
             [
                 'jumlah_item' => 1,
                 'harga_satuan' => 180000,
-                'id_transaksi' => '24.03.006',
+                'id_transaksi' => '24.06.004',
                 'id_produk' => 16
             ],
             [
                 'jumlah_item' => 1,
                 'harga_satuan' => 150_000,
-                'id_transaksi' => '24.03.007',
+                'id_transaksi' => '24.06.005',
                 'id_produk' => 18
             ],
             [
                 'jumlah_item' => 1,
                 'harga_satuan' => 75000,
-                'id_transaksi' => '24.03.007',
+                'id_transaksi' => '24.06.006',
                 'id_produk' => 19
             ],
             [
                 'jumlah_item' => 1,
                 'harga_satuan' => 650_000,
-                'id_transaksi' => '24.03.008',
+                'id_transaksi' => '24.06.006',
                 'id_produk' => 991
             ],
             [
                 'jumlah_item' => 1,
                 'harga_satuan' => 350_000,
-                'id_transaksi' => '24.03.008',
+                'id_transaksi' => '24.06.006',
                 'id_produk' => 993
             ],
 
@@ -2027,7 +2055,7 @@ class DatabaseSeeder extends Seeder
                 'kurir' => 'Andi',
                 'alamat_tujuan' => $faker->address,
 
-                'id_transaksi' => '24.03.003',
+                'id_transaksi' => '24.06.001',
             ],
             [
                 'jarak_pengiriman' => 5,
@@ -2036,7 +2064,7 @@ class DatabaseSeeder extends Seeder
                 'kurir' => 'Andi',
                 'alamat_tujuan' => $faker->address,
 
-                'id_transaksi' => '24.03.004',
+                'id_transaksi' => '24.06.002',
             ],
             [
                 'jarak_pengiriman' => 8,
@@ -2045,7 +2073,7 @@ class DatabaseSeeder extends Seeder
                 'kurir' => 'Andi',
                 'alamat_tujuan' => $faker->address,
 
-                'id_transaksi' => '24.03.005',
+                'id_transaksi' => '24.06.003',
             ],
             [
                 'jarak_pengiriman' => 3,
@@ -2054,7 +2082,7 @@ class DatabaseSeeder extends Seeder
                 'kurir' => 'Andi',
                 'alamat_tujuan' => $faker->address,
 
-                'id_transaksi' => '24.03.006',
+                'id_transaksi' => '24.06.004',
             ],
             [
                 'jarak_pengiriman' => 8,
@@ -2063,7 +2091,16 @@ class DatabaseSeeder extends Seeder
                 'kurir' => 'Andi',
                 'alamat_tujuan' => $faker->address,
 
-                'id_transaksi' => '24.03.007',
+                'id_transaksi' => '24.06.005',
+            ],
+            [
+                'jarak_pengiriman' => 8,
+                'biaya_pengiriman' => 15_000,
+                'tanggal_dikirim' => '2024-03-25',
+                'kurir' => 'Andi',
+                'alamat_tujuan' => $faker->address,
+
+                'id_transaksi' => '24.06.006',
             ],
         ]);
 
